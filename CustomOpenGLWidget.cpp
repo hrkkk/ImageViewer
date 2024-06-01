@@ -47,12 +47,7 @@ const char* fsrc = GET_GLSTR(
 
     void main(void)
     {
-        // YUV 转 RGB
-        vec3 rgb;
-        rgb = texture2D(tex, texCoord.st);
-
-        // 把颜色值赋值给像素
-        gl_FragColor = vec4(rgb, 1.0f);
+        gl_FragColor = texture2D(tex, texCoord);
     }
 );
 
@@ -111,42 +106,62 @@ void CustomOpenGLWidget::initializeGL()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearColor(1.0, 1.0, 1.0, 0.0);
 }
 
 void CustomOpenGLWidget::resizeGL(int w, int h)
 {
-    // double ratio = devicePixelRatio();
+    double ratio = devicePixelRatio();
+    // 计算窗口的实际尺寸
+    int windowWidth = w * ratio;
+    int windowHeight = h * ratio;
+    // 计算宽度的缩放比例
+    double scaleWidth = (double)windowWidth / m_imageWidth;
+    // 计算高度的缩放比例
+    double scaleHeight = (double)windowHeight / m_imageHeight;
+    // 选取较小的缩放比例以保证图片完整的显示在窗口中，同时不改变图片的宽高比
+    double scale = std::min(scaleWidth, scaleHeight);
+    // 计算缩放后的图像尺寸
+    m_viewportWidth = m_imageWidth * scale;
+    m_viewportHeight = m_imageHeight * scale;
 
-    // if (ratioStatus == RENDER_RATIO::RATIO_1_1) {
-    //     viewportHeight = h * ratio;
-    //     viewportWidth = viewportHeight * renderRatio;
-    //     startX = (w * ratio - viewportWidth) / 2;
-    //     startY = 0;
+    // double imageRatio = (double)m_imageWidth / m_imageHeight;
+    // if (imageRatio <= 1.0) {
+    //     m_viewportHeight = windowHeight;
+    //     m_viewportWidth = windowHeight * imageRatio;
     // } else {
-    //     viewportWidth = w * ratio;
-    //     viewportHeight = viewportWidth / renderRatio;
-    //     startX = 0;
-    //     startY = (h * ratio - viewportHeight) / 2;
+    //     m_viewportWidth = windowWidth;
+    //     m_viewportHeight = windowWidth / imageRatio;
     // }
+
+    // 计算图像在窗口中的显示位置
+    m_horizontalOffset = (windowWidth - m_viewportWidth) / 2;
+    m_verticalOffset = (windowHeight - m_viewportHeight) / 2;
 }
 
 void CustomOpenGLWidget::paintGL()
 {
-    // glViewport(startX, startY, viewportWidth, viewportHeight);
+    glViewport(m_horizontalOffset, m_verticalOffset, m_viewportWidth, m_viewportHeight);
 
-    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, videoWidth, videoHeight, 0, GL_RED, GL_UNSIGNED_BYTE, data);
+
+    if (m_imageChannels == 3) {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_imageWidth, m_imageHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, m_imageData);
+    } else if (m_imageChannels == 4){
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_imageWidth, m_imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_imageData);
+    }
 
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 
-void CustomOpenGLWidget::slot_showImage(uint8_t* data, uint width, uint height)
+void CustomOpenGLWidget::slot_showImage(uint8_t* data, uint width, uint height, uint channels)
 {
-    this->data = data;
-    videoWidth = width;
-    videoHeight = height;
+    m_imageData = data;
+    m_imageWidth = width;
+    m_imageHeight = height;
+    m_imageChannels = channels;
+
+    slot_resizeViewport();
     update();
 }
 

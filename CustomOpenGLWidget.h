@@ -16,7 +16,7 @@ signals:
     void sign_mouseClicked(int x, int y);
 
 public slots:
-    void slot_showImage(uint8_t* data, uint width, uint height);
+    void slot_showImage(uint8_t* data, uint width, uint height, uint channels);
     void slot_resizeViewport();
 
 protected:
@@ -33,11 +33,15 @@ private:
     unsigned int fragmentShader;
     unsigned int texture;
 
-    uint videoWidth, videoHeight;
-    int viewportWidth, viewportHeight;
-    int startX, startY;
+    // 显示窗口
+    int m_viewportWidth, m_viewportHeight;
+    int m_horizontalOffset, m_verticalOffset;
 
-    uint8_t* data;
+    // 图像数据
+    uint8_t* m_imageData;
+    uint m_imageWidth;
+    uint m_imageHeight;
+    uint m_imageChannels;
 };
 
 #endif // CUSTOMOPENGLWIDGET_H

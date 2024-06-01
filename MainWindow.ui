@@ -29,7 +29,7 @@
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,8,1">
     <item>
      <widget class="QWidget" name="headBar" native="true">
       <property name="styleSheet">
@@ -122,10 +122,16 @@ QLabel {
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0,0">
        <item>
-        <widget class="QWidget" name="widget_info" native="true"/>
+        <widget class="QWidget" name="widget_info" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_2"/>
+        </widget>
        </item>
        <item>
-        <widget class="CustomOpenGLWidget" name="openGLWidget"/>
+        <widget class="CustomOpenGLWidget" name="openGLWidget">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QScrollArea" name="scrollArea">
@@ -144,7 +150,7 @@ QLabel {
             <x>0</x>
             <y>0</y>
             <width>98</width>
-            <height>650</height>
+            <height>601</height>
            </rect>
           </property>
          </widget>
@@ -495,7 +501,7 @@ QLabel {
   <customwidget>
    <class>CustomOpenGLWidget</class>
    <extends>QOpenGLWidget</extends>
-   <header location="global">CustomOpenGLWidget.h</header>
+   <header>CustomOpenGLWidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>
