@@ -12,6 +12,27 @@ void CustomOpenGLWidget::mousePressEvent(QMouseEvent* event)
     }
 }
 
+void CustomOpenGLWidget::wheelEvent(QWheelEvent* event)
+{
+    if (event->angleDelta().y() > 10) {
+        if (m_scaleRatio == 0.01) {
+            m_scaleRatio = 0.1;     // 凑整，避免从1%变成11%
+        } else {
+            m_scaleRatio += 0.1;
+        }
+        if (m_scaleRatio >= 10.0) {     // 最大可放大至1000%
+            m_scaleRatio = 10.0;
+        }
+    } else {
+        m_scaleRatio -= 0.1;
+        if (m_scaleRatio <= 0.01) {     // 最小可缩小至1%
+            m_scaleRatio = 0.01;
+        }
+    }
+    resizeGL(width(), height());
+    emit sign_scaleChanged(m_scaleRatio);
+}
+
 #define GET_GLSTR(x) #x
 const char* vsrc = GET_GLSTR(
     attribute vec4 inPosition;
@@ -122,8 +143,8 @@ void CustomOpenGLWidget::resizeGL(int w, int h)
     // 选取较小的缩放比例以保证图片完整的显示在窗口中，同时不改变图片的宽高比
     double scale = std::min(scaleWidth, scaleHeight);
     // 计算缩放后的图像尺寸
-    m_viewportWidth = m_imageWidth * scale;
-    m_viewportHeight = m_imageHeight * scale;
+    m_viewportWidth = m_imageWidth * scale * m_scaleRatio;
+    m_viewportHeight = m_imageHeight * scale * m_scaleRatio;
 
     // double imageRatio = (double)m_imageWidth / m_imageHeight;
     // if (imageRatio <= 1.0) {
@@ -137,6 +158,8 @@ void CustomOpenGLWidget::resizeGL(int w, int h)
     // 计算图像在窗口中的显示位置
     m_horizontalOffset = (windowWidth - m_viewportWidth) / 2;
     m_verticalOffset = (windowHeight - m_viewportHeight) / 2;
+
+    update();
 }
 
 void CustomOpenGLWidget::paintGL()
@@ -168,4 +191,25 @@ void CustomOpenGLWidget::slot_showImage(uint8_t* data, uint width, uint height, 
 void CustomOpenGLWidget::slot_resizeViewport()
 {
     resizeGL(width(), height());
+}
+
+void CustomOpenGLWidget::slot_changeScale(int flag)
+{
+    if (flag == 1) {    // 放大
+        if (m_scaleRatio == 0.01) {
+            m_scaleRatio = 0.1;     // 凑整，避免从1%变成11%
+        } else {
+            m_scaleRatio += 0.1;
+        }
+        if (m_scaleRatio >= 10.0) {     // 最大可放大至1000%
+            m_scaleRatio = 10.0;
+        }
+    } else {    // 缩小
+        m_scaleRatio -= 0.1;
+        if (m_scaleRatio <= 0.01) {     // 最小可缩小至1%
+            m_scaleRatio = 0.01;
+        }
+    }
+    resizeGL(width(), height());
+    emit sign_scaleChanged(m_scaleRatio);
 }

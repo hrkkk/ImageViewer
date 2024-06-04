@@ -14,16 +14,19 @@ public:
 
 signals:
     void sign_mouseClicked(int x, int y);
+    void sign_scaleChanged(double scale);
 
 public slots:
     void slot_showImage(uint8_t* data, uint width, uint height, uint channels);
     void slot_resizeViewport();
+    void slot_changeScale(int flag);
 
 protected:
     void initializeGL() override;
     void resizeGL(int w, int h) override;
     void paintGL() override;
     void mousePressEvent(QMouseEvent* event) override;
+    void wheelEvent(QWheelEvent* event) override;
 
 private:
     unsigned int program;
@@ -36,6 +39,7 @@ private:
     // 显示窗口
     int m_viewportWidth, m_viewportHeight;
     int m_horizontalOffset, m_verticalOffset;
+    double m_scaleRatio = 1.0;
 
     // 图像数据
     uint8_t* m_imageData;

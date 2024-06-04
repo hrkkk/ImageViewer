@@ -12,7 +12,7 @@ MainWindow::MainWindow(QString url, QWidget *parent)
 {
     ui->setupUi(this);
 
-    m_url = R"(H:\DataCenter\Photo\#2 Photo\other\IMG_4785.HEIC)";
+    m_url = R"()";
     m_file = QFileInfo(m_url);
 
     this->showMaximized();
@@ -54,8 +54,17 @@ MainWindow::MainWindow(QString url, QWidget *parent)
         item = static_cast<ImageItem*>(m_listLayout->itemAt(m_currIndex)->widget());
         item->setChecked(true);
     });
+    connect(ui->btn_zoomIn, &QPushButton::clicked, this, [this]() {
+        ui->openGLWidget->slot_changeScale(1);
+    });
+    connect(ui->btn_zoomOut, &QPushButton::clicked, this, [this]() {
+        ui->openGLWidget->slot_changeScale(2);
+    });
 
     connect(this, &MainWindow::sig_showImage, ui->openGLWidget, &CustomOpenGLWidget::slot_showImage);
+    connect(ui->openGLWidget, &CustomOpenGLWidget::sign_scaleChanged, this, [this](double scale) {
+        ui->label_zoomPercent->setText(QString("%1%").arg((int)(scale * 100)));
+    });
 
     // 加载图片
     getFileList();
