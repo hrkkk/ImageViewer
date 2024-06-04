@@ -128,9 +128,15 @@ QLabel {
         <widget class="QScrollArea" name="scrollArea">
          <property name="maximumSize">
           <size>
-           <width>100</width>
+           <width>120</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::AdjustToContents</enum>
          </property>
          <property name="widgetResizable">
           <bool>true</bool>
@@ -140,10 +146,55 @@ QLabel {
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>98</width>
+            <width>118</width>
             <height>601</height>
            </rect>
           </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QWidget" name="widget" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>110</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>110</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
@@ -202,8 +253,8 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/resources/缩小.png</normaloff>:/resources/缩小.png</iconset>
+             <iconset resource="res.qrc">
+              <normaloff>:/resources/smaller.png</normaloff>:/resources/smaller.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -238,8 +289,8 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/resources/放大.png</normaloff>:/resources/放大.png</iconset>
+             <iconset resource="res.qrc">
+              <normaloff>:/resources/bigger.png</normaloff>:/resources/bigger.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -267,8 +318,8 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/resources/上一张.png</normaloff>:/resources/上一张.png</iconset>
+             <iconset resource="res.qrc">
+              <normaloff>:/resources/prev.png</normaloff>:/resources/prev.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -303,8 +354,8 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/resources/下一张.png</normaloff>:/resources/下一张.png</iconset>
+             <iconset resource="res.qrc">
+              <normaloff>:/resources/next.png</normaloff>:/resources/next.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -332,8 +383,8 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/resources/全屏.png</normaloff>:/resources/全屏.png</iconset>
+             <iconset resource="res.qrc">
+              <normaloff>:/resources/full.png</normaloff>:/resources/full.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -361,8 +412,8 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/resources/正旋转.png</normaloff>:/resources/正旋转.png</iconset>
+             <iconset resource="res.qrc">
+              <normaloff>:/resources/rotate.png</normaloff>:/resources/rotate.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -390,8 +441,8 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/resources/删除.png</normaloff>:/resources/删除.png</iconset>
+             <iconset resource="res.qrc">
+              <normaloff>:/resources/delete.png</normaloff>:/resources/delete.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -426,8 +477,8 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/resources/整理.png</normaloff>:/resources/整理.png</iconset>
+             <iconset resource="res.qrc">
+              <normaloff>:/resources/list.png</normaloff>:/resources/list.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -455,8 +506,8 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/resources/版本信息.png</normaloff>:/resources/版本信息.png</iconset>
+             <iconset resource="res.qrc">
+              <normaloff>:/resources/info.png</normaloff>:/resources/info.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -495,6 +546,8 @@ QLabel {
    <header>customopenglwidget.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>

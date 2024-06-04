@@ -8,12 +8,14 @@ class ImageItem : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ImageItem(const QString& title, QWidget *parent = nullptr);
+    explicit ImageItem(const QPixmap& image, QWidget *parent = nullptr);
+
+    void setChecked(bool isChecked);
 
 signals:
 
 private:
-    QString m_title;
+    QPixmap m_image;
 };
 
 #endif // IMAGEITEM_H

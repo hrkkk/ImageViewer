@@ -12,20 +12,22 @@ MainWindow::MainWindow(QString url, QWidget *parent)
 {
     ui->setupUi(this);
 
-    m_url = R"()";
+    m_url = R"(H:\DataCenter\Photo\#2 Photo\other\IMG_4785.HEIC)";
     m_file = QFileInfo(m_url);
 
     this->showMaximized();
-    ui->widget_info->hide();
     ui->scrollArea->hide();
 
     connect(ui->btn_imageList, &QPushButton::clicked, this, [this]() {
         ui->scrollArea->setVisible(!ui->scrollArea->isVisible());
     });
     connect(ui->btn_imageInfo, &QPushButton::clicked, this, [this]() {
-        ui->widget_info->setVisible(!ui->widget_info->isVisible());
+
     });
     connect(ui->btn_prev, &QPushButton::clicked, this, [this]() {
+        ImageItem* item = static_cast<ImageItem*>(m_listLayout->itemAt(m_currIndex)->widget());
+        item->setChecked(false);
+
         if (m_currIndex <= 1) {
             m_currIndex = m_fileList.size();
         } else {
@@ -33,8 +35,14 @@ MainWindow::MainWindow(QString url, QWidget *parent)
         }
         m_file = QFileInfo(m_file.absolutePath() + "/" + m_fileList.at(m_currIndex - 1));
         loadImage(m_file.absoluteFilePath().toStdString());
+
+        item = static_cast<ImageItem*>(m_listLayout->itemAt(m_currIndex)->widget());
+        item->setChecked(true);
     });
     connect(ui->btn_next, &QPushButton::clicked, this, [this]() {
+        ImageItem* item = static_cast<ImageItem*>(m_listLayout->itemAt(m_currIndex)->widget());
+        item->setChecked(false);
+
         if (m_currIndex == m_fileList.size()) {
             m_currIndex = 1;
         } else {
@@ -42,6 +50,9 @@ MainWindow::MainWindow(QString url, QWidget *parent)
         }
         m_file = QFileInfo(m_file.absolutePath() + "/" + m_fileList.at(m_currIndex - 1));
         loadImage(m_file.absoluteFilePath().toStdString());
+
+        item = static_cast<ImageItem*>(m_listLayout->itemAt(m_currIndex)->widget());
+        item->setChecked(true);
     });
 
     connect(this, &MainWindow::sig_showImage, ui->openGLWidget, &CustomOpenGLWidget::slot_showImage);
@@ -91,10 +102,23 @@ void MainWindow::getFileList()
 
     m_fileList.clear();
     m_fileList = dir.entryList(nameFilters, QDir::Files | QDir::NoDotAndDotDot);
+    m_currIndex = m_fileList.indexOf(m_file.fileName());
 
-    foreach (const QString& item, m_fileList) {
-        ImageItem* imageItem = new ImageItem(item, ui->scrollAreaWidgetContents);
+    if (m_listLayout != nullptr) {
+        delete m_listLayout;
+        m_listLayout = nullptr;
     }
 
-    m_currIndex = m_fileList.indexOf(m_file.fileName());
+    if (m_listLayout == nullptr) {
+        m_listLayout = new QVBoxLayout;
+        foreach (const QString& item, m_fileList) {
+            ImageItem* imageItem = new ImageItem(QPixmap(), ui->scrollAreaWidgetContents);
+            m_listLayout->addWidget(imageItem);
+        }
+        ui->widget->setLayout(m_listLayout);
+        m_listLayout->setContentsMargins(QMargins(0, 5, 0, 5));
+
+        ImageItem* item = static_cast<ImageItem*>(m_listLayout->itemAt(m_currIndex)->widget());
+        item->setChecked(true);
+    }
 }

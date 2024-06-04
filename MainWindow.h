@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QFileInfo>
+#include <QVBoxLayout>
 #include "DetailInfoDialog.h"
 #include "ImageItem.h"
 
@@ -35,5 +36,6 @@ private:
     QFileInfo m_file;
     int m_currIndex;
     QStringList m_fileList;
+    QVBoxLayout* m_listLayout = nullptr;
 };
 #endif // MAINWINDOW_H
