@@ -92,5 +92,9 @@ void MainWindow::getFileList()
     m_fileList.clear();
     m_fileList = dir.entryList(nameFilters, QDir::Files | QDir::NoDotAndDotDot);
 
+    foreach (const QString& item, m_fileList) {
+        ImageItem* imageItem = new ImageItem(item, ui->scrollAreaWidgetContents);
+    }
+
     m_currIndex = m_fileList.indexOf(m_file.fileName());
 }

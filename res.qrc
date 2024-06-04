@@ -1,14 +1,14 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/版本信息.png</file>
-        <file>resources/放大.png</file>
-        <file>resources/全屏.png</file>
-        <file>resources/删除.png</file>
-        <file>resources/缩小.png</file>
-        <file>resources/原比例.png</file>
-        <file>resources/整理.png</file>
-        <file>resources/正旋转.png</file>
-        <file>resources/上一张.png</file>
-        <file>resources/下一张.png</file>
+        <file>resources/bigger.png</file>
+        <file>resources/delete.png</file>
+        <file>resources/full.png</file>
+        <file>resources/info.png</file>
+        <file>resources/list.png</file>
+        <file>resources/next.png</file>
+        <file>resources/origin.png</file>
+        <file>resources/prev.png</file>
+        <file>resources/rotate.png</file>
+        <file>resources/smaller.png</file>
     </qresource>
 </RCC>

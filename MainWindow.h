@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QFileInfo>
+#include "DetailInfoDialog.h"
+#include "ImageItem.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -27,6 +29,7 @@ signals:
 
 private:
     Ui::MainWindow *ui;
+    DetailInfoDialog* m_detailInfoDialog;
     QString m_url;
     uint8_t* m_data = nullptr;
     QFileInfo m_file;

@@ -25,6 +25,8 @@ set(PROJECT_SOURCES
         MainWindow.cpp
         MainWindow.h
         MainWindow.ui
+        CustomOpenGLWidget.h CustomOpenGLWidget.cpp
+        ImageReader.h ImageReader.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -32,8 +34,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         res.qrc
-        CustomOpenGLWidget.h CustomOpenGLWidget.cpp
-        ImageReader.h ImageReader.cpp
+        DetailInfoDialog.h DetailInfoDialog.cpp DetailInfoDialog.ui
+        ImageItem.h ImageItem.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET ImageViewer APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

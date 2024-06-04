@@ -120,18 +120,9 @@ QLabel {
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0">
        <item>
-        <widget class="QWidget" name="widget_info" native="true">
-         <layout class="QVBoxLayout" name="verticalLayout_2"/>
-        </widget>
-       </item>
-       <item>
-        <widget class="CustomOpenGLWidget" name="openGLWidget">
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-        </widget>
+        <widget class="CustomOpenGLWidget" name="openGLWidget"/>
        </item>
        <item>
         <widget class="QScrollArea" name="scrollArea">
@@ -211,7 +202,7 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="res.qrc">
+             <iconset>
               <normaloff>:/resources/缩小.png</normaloff>:/resources/缩小.png</iconset>
             </property>
             <property name="iconSize">
@@ -247,7 +238,7 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="res.qrc">
+             <iconset>
               <normaloff>:/resources/放大.png</normaloff>:/resources/放大.png</iconset>
             </property>
             <property name="iconSize">
@@ -276,7 +267,7 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="res.qrc">
+             <iconset>
               <normaloff>:/resources/上一张.png</normaloff>:/resources/上一张.png</iconset>
             </property>
             <property name="iconSize">
@@ -312,7 +303,7 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="res.qrc">
+             <iconset>
               <normaloff>:/resources/下一张.png</normaloff>:/resources/下一张.png</iconset>
             </property>
             <property name="iconSize">
@@ -341,7 +332,7 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="res.qrc">
+             <iconset>
               <normaloff>:/resources/全屏.png</normaloff>:/resources/全屏.png</iconset>
             </property>
             <property name="iconSize">
@@ -370,7 +361,7 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="res.qrc">
+             <iconset>
               <normaloff>:/resources/正旋转.png</normaloff>:/resources/正旋转.png</iconset>
             </property>
             <property name="iconSize">
@@ -399,7 +390,7 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="res.qrc">
+             <iconset>
               <normaloff>:/resources/删除.png</normaloff>:/resources/删除.png</iconset>
             </property>
             <property name="iconSize">
@@ -435,7 +426,7 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="res.qrc">
+             <iconset>
               <normaloff>:/resources/整理.png</normaloff>:/resources/整理.png</iconset>
             </property>
             <property name="iconSize">
@@ -464,7 +455,7 @@ QLabel {
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="res.qrc">
+             <iconset>
               <normaloff>:/resources/版本信息.png</normaloff>:/resources/版本信息.png</iconset>
             </property>
             <property name="iconSize">
@@ -501,11 +492,9 @@ QLabel {
   <customwidget>
    <class>CustomOpenGLWidget</class>
    <extends>QOpenGLWidget</extends>
-   <header>CustomOpenGLWidget.h</header>
+   <header>customopenglwidget.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
