@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/bigger.png</file>
+        <file>resources/delete.png</file>
+        <file>resources/full.png</file>
+        <file>resources/info.png</file>
+        <file>resources/list.png</file>
+        <file>resources/next.png</file>
+        <file>resources/origin.png</file>
+        <file>resources/prev.png</file>
+        <file>resources/rotate.png</file>
+        <file>resources/smaller.png</file>
+        <file>resources/heic.png</file>
+        <file>resources/jpg.png</file>
+        <file>resources/png.png</file>
+        <file>resources/raw.png</file>
+    </qresource>
+</RCC>

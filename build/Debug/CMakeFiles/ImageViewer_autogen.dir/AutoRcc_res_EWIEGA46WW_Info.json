@@ -1,0 +1,38 @@
+{
+	"BUILD_DIR" : "C:/Users/hrkkk/Desktop/ImageViewer/build/Debug/ImageViewer_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/hrkkk/Desktop/ImageViewer/build/Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/hrkkk/Desktop/ImageViewer/build/Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/hrkkk/Desktop/ImageViewer",
+	"CMAKE_SOURCE_DIR" : "C:/Users/hrkkk/Desktop/ImageViewer",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "C:/Users/hrkkk/Desktop/ImageViewer/build/Debug/ImageViewer_autogen/include",
+	"INPUTS" : 
+	[
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/delete.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/png.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/smaller.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/next.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/jpg.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/prev.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/list.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/raw.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/info.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/bigger.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/heic.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/origin.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/full.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/rotate.png"
+	],
+	"LOCK_FILE" : "C:/Users/hrkkk/Desktop/ImageViewer/build/Debug/CMakeFiles/ImageViewer_autogen.dir/AutoRcc_res_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "--no-zstd", "-name", "res" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_res.cpp",
+	"RCC_EXECUTABLE" : "D:/Qt6/6.6.3/msvc2019_64/./bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "C:/Users/hrkkk/Desktop/ImageViewer/build/Debug/CMakeFiles/ImageViewer_autogen.dir/AutoRcc_res_EWIEGA46WW_Used.txt",
+	"SOURCE" : "C:/Users/hrkkk/Desktop/ImageViewer/res.qrc",
+	"USE_BETTER_GRAPH" : false,
+	"VERBOSITY" : 0
+}
