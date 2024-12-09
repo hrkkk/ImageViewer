@@ -1,4 +1,4 @@
-#include "CustomOpenGLWidget.h"
+﻿#include "CustomOpenGLWidget.h"
 #include <QApplication>
 #include <QDebug>
 #include <QMouseEvent>
@@ -38,7 +38,7 @@ const char* vsrc = GET_GLSTR(
     attribute vec4 inPosition;
     attribute vec2 inTexCoord;
 
-    uniform int rotation;
+    uniform int orientation;
 
     varying vec2 texCoord;
 
@@ -48,14 +48,34 @@ const char* vsrc = GET_GLSTR(
 
         // 根据旋转角度变换纹理坐标
         vec2 rotatedTexCoords;
-        if (rotation == 1) {    // 顺时针旋转90°，将纹理坐标的x和y坐标交换，然后将x坐标取反
-            rotatedTexCoords = vec2(1.0 - inTexCoord.y, inTexCoord.x);
-        } else if (rotation == 2) {     // 顺时针旋转180°，将纹理坐标的x和y坐标取反
-            rotatedTexCoords = vec2(1.0 - inTexCoord.x, 1.0 - inTexCoord.y);
-        } else if (rotation == 3) {     // 顺时针旋转270°（即逆时针旋转90°），将纹理坐标的x和y坐标交换，然后将y坐标取反
-            rotatedTexCoords = vec2(inTexCoord.y, 1.0 - inTexCoord.x);
-        } else {     // 旋转0°，即默认情况，不旋转
-            rotatedTexCoords = inTexCoord;
+        switch (orientation) {
+        case 1:
+            rotatedTexCoords = inTexCoord;   // 不旋转
+            break;
+        case 2:
+            rotatedTexCoords = vec2(1.0 - inTexCoord.x, inTexCoord.y);    // 水平翻转
+            break;
+        case 3:
+            rotatedTexCoords = vec2(1.0 - inTexCoord.x, 1.0 - inTexCoord.y);  // 顺时针旋转180°
+            break;
+        case 4:
+            rotatedTexCoords = vec2(inTexCoord.x, 1.0 - inTexCoord.y);    // 垂直翻转
+            break;
+        case 5:
+            rotatedTexCoords = vec2(1.0 - inTexCoord.y, inTexCoord.x);    // 顺时针旋转90° + 水平翻转
+            break;
+        case 6:
+            rotatedTexCoords = vec2(inTexCoord.y, inTexCoord.x);  // 顺时针旋转90°
+            break;
+        case 7:
+            rotatedTexCoords = vec2(1.0 - inTexCoord.y, 1.0 - inTexCoord.x);  // 顺时针旋转90° + 垂直翻转
+            break;
+        case 8:
+            rotatedTexCoords = vec2(inTexCoord.y, 1.0 - inTexCoord.x);    // 逆时针旋转90°
+            break;
+        default:
+            rotatedTexCoords = inTexCoord;   // 不旋转
+            break;
         }
 
         texCoord = vec2(rotatedTexCoords.x, 1.0 - rotatedTexCoords.y);
@@ -137,14 +157,14 @@ void CustomOpenGLWidget::resizeGL(int w, int h)
     int windowWidth = w * ratio;
     int windowHeight = h * ratio;
     // 计算宽度的缩放比例
-    double scaleWidth = (double)windowWidth / m_imageWidth;
+    double scaleWidth = (double)windowWidth / (m_isRotated ? m_imageHeight : m_imageWidth);
     // 计算高度的缩放比例
-    double scaleHeight = (double)windowHeight / m_imageHeight;
+    double scaleHeight = (double)windowHeight / (m_isRotated ? m_imageWidth : m_imageHeight);
     // 选取较小的缩放比例以保证图片完整的显示在窗口中，同时不改变图片的宽高比
     double scale = std::min(scaleWidth, scaleHeight);
     // 计算缩放后的图像尺寸
-    m_viewportWidth = m_imageWidth * scale * m_scaleRatio;
-    m_viewportHeight = m_imageHeight * scale * m_scaleRatio;
+    m_viewportWidth = (m_isRotated ? m_imageHeight : m_imageWidth) * scale * m_scaleRatio;
+    m_viewportHeight = (m_isRotated ? m_imageWidth : m_imageHeight) * scale * m_scaleRatio;
 
     // double imageRatio = (double)m_imageWidth / m_imageHeight;
     // if (imageRatio <= 1.0) {
@@ -174,15 +194,22 @@ void CustomOpenGLWidget::paintGL()
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_imageWidth, m_imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_imageData);
     }
 
+    glUniform1i(glGetUniformLocation(program, "orientation"), m_orientation);
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 
-void CustomOpenGLWidget::slot_showImage(uint8_t* data, uint width, uint height, uint channels)
+void CustomOpenGLWidget::slot_showImage(uint8_t* data, uint width, uint height, uint channels, int orientation)
 {
     m_imageData = data;
     m_imageWidth = width;
     m_imageHeight = height;
     m_imageChannels = channels;
+    m_orientation = orientation;
+    if (m_orientation >= 5 && m_orientation <= 8) {
+        m_isRotated = true;
+    } else {
+        m_isRotated = false;
+    }
 
     slot_resizeViewport();
     update();
@@ -212,4 +239,20 @@ void CustomOpenGLWidget::slot_changeScale(int flag)
     }
     resizeGL(width(), height());
     emit sign_scaleChanged(m_scaleRatio);
+}
+
+void CustomOpenGLWidget::slot_rotateImage()
+{
+    m_orientation++;
+    if (m_orientation > 8) {
+        m_orientation = 1;
+    }
+    if (m_orientation >= 5 && m_orientation <= 8) {
+        m_isRotated = true;
+    } else {
+        m_isRotated = false;
+    }
+
+    slot_resizeViewport();
+    update();
 }

@@ -1,4 +1,4 @@
-#ifndef CUSTOMOPENGLWIDGET_H
+﻿#ifndef CUSTOMOPENGLWIDGET_H
 #define CUSTOMOPENGLWIDGET_H
 
 #include <QObject>
@@ -17,9 +17,10 @@ signals:
     void sign_scaleChanged(double scale);
 
 public slots:
-    void slot_showImage(uint8_t* data, uint width, uint height, uint channels);
+    void slot_showImage(uint8_t* data, uint width, uint height, uint channels, int orientation);
     void slot_resizeViewport();
     void slot_changeScale(int flag);
+    void slot_rotateImage();
 
 protected:
     void initializeGL() override;
@@ -40,6 +41,8 @@ private:
     int m_viewportWidth, m_viewportHeight;
     int m_horizontalOffset, m_verticalOffset;
     double m_scaleRatio = 1.0;
+    int m_orientation = 1;
+    bool m_isRotated = false;
 
     // 图像数据
     uint8_t* m_imageData;

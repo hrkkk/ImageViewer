@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QDebug>
 
+
 MainWindow::MainWindow(QString url, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -13,20 +14,22 @@ MainWindow::MainWindow(QString url, QWidget *parent)
 {
     ui->setupUi(this);
 
-    m_url = "F:\\DCIM\\100MSDCF\\DSC00985.JPG";
-    m_currDir = "F:\\DCIM";
+    m_url = "C:\\Users\\hrkkk\\Desktop\\DSC00902.JPG";
+    m_currDir = "C:\\Users\\hrkkk\\Pictures\\wallpaper\\";
     m_file = QFileInfo(m_url);
 
     // 默认全屏显示
     this->showMaximized();
     // 默认隐藏侧边文件列表
     ui->widget->hide();
+    // 默认隐藏图片信息
+    ui->plainTextEdit->hide();
 
     connect(ui->btn_imageList, &QPushButton::clicked, this, [=]() {
         ui->widget->setVisible(!ui->widget->isVisible());
     });
     connect(ui->btn_imageInfo, &QPushButton::clicked, this, [=]() {
-
+        ui->plainTextEdit->setVisible(!ui->plainTextEdit->isVisible());
     });
     connect(ui->btn_prev, &QPushButton::clicked, this, [=]() {
         // ImageItem* item = static_cast<ImageItem*>(m_listLayout->itemAt(m_currIndex)->widget());
@@ -63,6 +66,9 @@ MainWindow::MainWindow(QString url, QWidget *parent)
     });
     connect(ui->btn_zoomOut, &QPushButton::clicked, this, [=]() {
         ui->openGLWidget->slot_changeScale(2);
+    });
+    connect(ui->btn_rotate, &QPushButton::clicked, this, [=]() {
+        ui->openGLWidget->slot_rotateImage();
     });
 
     connect(this, &MainWindow::sig_showImage, ui->openGLWidget, &CustomOpenGLWidget::slot_showImage);
@@ -106,8 +112,18 @@ void MainWindow::loadImage(const std::string& filename)
     int width, height, channels;
     ImageReader::readJPG(filename, m_data, width, height, channels);
 
+    int orientation;
+    std::vector<std::pair<std::string, std::string>> exifInfo;
+    ImageReader::readImageExif(filename, exifInfo, orientation);
+    if (!exifInfo.empty()) {
+        for (auto item : exifInfo) {
+            QString tmp = QString("%1 : %2").arg(QString::fromStdString(item.first)).arg(QString::fromStdString(item.second));
+            ui->plainTextEdit->appendPlainText(tmp);
+        }
+    }
+
     // 显示图像
-    emit sig_showImage(m_data, width, height, channels);
+    emit sig_showImage(m_data, width, height, channels, orientation);
 
     // 显示标头
     ui->label_name->setText(m_file.fileName());

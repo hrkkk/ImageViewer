@@ -34,7 +34,7 @@ private:
     void getFileList();
 
 signals:
-    void sig_showImage(uint8_t* data, uint width, uint height, uint channels);
+    void sig_showImage(uint8_t* data, uint width, uint height, uint channels, int orientation);
 
 private:
     Ui::MainWindow *ui;

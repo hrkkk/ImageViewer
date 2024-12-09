@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+﻿cmake_minimum_required(VERSION 3.5)
 
 project(ImageViewer VERSION 0.1 LANGUAGES CXX)
 
@@ -19,9 +19,11 @@ include_directories("./3rdparty/libde265/include/")
 link_directories("./3rdparty/libde265/lib/")
 include_directories("./3rdparty/libx265/include/")
 link_directories("./3rdparty/libx265/lib/")
-include_directories("D:/Environment/opencv/build/include/")
-link_directories("D:/Environment/opencv/build/x64/vc15/bin/")
-link_directories("D:/Environment/opencv/build/x64/vc15/lib")
+include_directories("./3rdparty/libjpeg/libjpeg-turbo64/include")
+link_directories("./3rdparty/libjpeg/libjpeg-turbo64/lib")
+include_directories("./3rdparty/TinyEXIF/")
+
+add_definitions(-DTINYEXIF_NO_XMP_SUPPORT)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -30,6 +32,8 @@ set(PROJECT_SOURCES
         MainWindow.ui
         CustomOpenGLWidget.h CustomOpenGLWidget.cpp
         ImageReader.h ImageReader.cpp
+        ./3rdparty/TinyEXIF/TinyEXIF.cpp
+        ./3rdparty/TinyEXIF/TinyEXIF.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -58,7 +62,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(ImageViewer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets heif.lib libx265.lib de265.lib opencv_world460d.dll opencv_world460d.lib)
+target_link_libraries(ImageViewer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets heif.lib libx265.lib de265.lib jpeg.lib)
 target_link_libraries(ImageViewer PRIVATE Qt${QT_VERSION_MAJOR}::OpenGLWidgets)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

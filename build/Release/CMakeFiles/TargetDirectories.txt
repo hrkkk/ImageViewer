@@ -1,0 +1,8 @@
+C:/Users/hrkkk/Desktop/ImageViewer/build/Release/CMakeFiles/ImageViewer.dir
+C:/Users/hrkkk/Desktop/ImageViewer/build/Release/CMakeFiles/edit_cache.dir
+C:/Users/hrkkk/Desktop/ImageViewer/build/Release/CMakeFiles/rebuild_cache.dir
+C:/Users/hrkkk/Desktop/ImageViewer/build/Release/CMakeFiles/list_install_components.dir
+C:/Users/hrkkk/Desktop/ImageViewer/build/Release/CMakeFiles/install.dir
+C:/Users/hrkkk/Desktop/ImageViewer/build/Release/CMakeFiles/install/local.dir
+C:/Users/hrkkk/Desktop/ImageViewer/build/Release/CMakeFiles/ImageViewer_autogen_timestamp_deps.dir
+C:/Users/hrkkk/Desktop/ImageViewer/build/Release/CMakeFiles/ImageViewer_autogen.dir
