@@ -45,7 +45,7 @@ std::string processString(const std::string& input) {
     return result;
 }
 
-int ImageReader::readHEIF(const std::string &filename, uint8_t*& dataPtr, int& width, int& height, int& channels)
+int ImageReader::readHEIF(const std::string &filename, std::shared_ptr<ImageData>& imageData)
 {
     heif_context* ctx = heif_context_alloc();
     heif_context_read_from_file(ctx, filename.c_str(), nullptr);
@@ -60,11 +60,12 @@ int ImageReader::readHEIF(const std::string &filename, uint8_t*& dataPtr, int& w
     int stride;
     uint8_t* data = heif_image_get_plane(img, heif_channel_interleaved, &stride);
     // 获取图像宽度
-    width = heif_image_get_width(img, heif_channel_interleaved);
+    int width = heif_image_get_width(img, heif_channel_interleaved);
     // 获取图像高度
-    height = heif_image_get_height(img, heif_channel_interleaved);
+    int height = heif_image_get_height(img, heif_channel_interleaved);
     // 获取图像像素位深
     int bitsPerPixel = heif_image_get_bits_per_pixel(img, heif_channel_interleaved);
+    int channels = 0;
     if (bitsPerPixel == 24) {
         channels = 3;
     } else if (bitsPerPixel == 32) {
@@ -73,9 +74,9 @@ int ImageReader::readHEIF(const std::string &filename, uint8_t*& dataPtr, int& w
     uint64_t byteSize = channels * width * height;
 
     // 将数据转移到堆上
-    if (dataPtr == nullptr) {
-        dataPtr = new uint8_t[byteSize];
-        memcpy(dataPtr, data, byteSize);
+    if (imageData == nullptr) {
+        imageData = std::make_shared<ImageData>(width, height, channels);
+        memcpy(imageData->pixels, data, byteSize);
     }
 
     // 释放资源
@@ -86,27 +87,28 @@ int ImageReader::readHEIF(const std::string &filename, uint8_t*& dataPtr, int& w
     return 0;
 }
 
-int ImageReader::readPNG(const std::string& filename, uint8_t*& dataPtr, int& width, int& height, int& channels)
+int ImageReader::readPNG(const std::string& filename, std::shared_ptr<ImageData>& imageData)
 {
     QImage img(QString::fromStdString(filename));
     if (img.isNull()) {
         return -1;
     }
 
-    width = img.width();
-    height = img.height();
+    int width = img.width();
+    int height = img.height();
     int bitDepth = img.depth();
+    int channels = 0;
     if (bitDepth == 24) {
         channels = 3;
     } else if (bitDepth == 32) {
         channels = 4;
     }
 
-    uint64_t byteSize = img.sizeInBytes();
+    uint64_t byteSize = width * height * channels;
     // 将图像数据复制到堆上
-    if (dataPtr == nullptr) {
-        dataPtr = new uint8_t[byteSize];
-        memcpy(dataPtr, img.bits(), byteSize);
+    if (imageData == nullptr) {
+        imageData = std::make_shared<ImageData>(width, height, channels);
+        memcpy(imageData->pixels, img.bits(), byteSize);
     }
 
     return 0;
@@ -162,7 +164,7 @@ int ImageReader::readJPG(const std::string& filename, std::shared_ptr<ImageData>
     return 0;
 }
 
-int ImageReader::readRaw(const std::string& filename, uint8_t*& dataPtr, int& width, int& height, int& channels)
+int ImageReader::readRaw(const std::string& filename, std::shared_ptr<ImageData>& imageData)
 {
     return 0;
 }

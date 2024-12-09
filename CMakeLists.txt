@@ -13,15 +13,23 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS OpenGLWidgets)
 
+# libheif库
 include_directories("./3rdparty/libheif/include/")
 link_directories("./3rdparty/libheif/lib/")
+# libde265库
 include_directories("./3rdparty/libde265/include/")
 link_directories("./3rdparty/libde265/lib/")
+# libx265库
 include_directories("./3rdparty/libx265/include/")
 link_directories("./3rdparty/libx265/lib/")
-include_directories("./3rdparty/libjpeg/libjpeg-turbo64/include")
-link_directories("./3rdparty/libjpeg/libjpeg-turbo64/lib")
+# libjpeg库
+include_directories("./3rdparty/libjpeg/libjpeg-turbo64/include/")
+link_directories("./3rdparty/libjpeg/libjpeg-turbo64/lib/")
+# TinyEXIF库
 include_directories("./3rdparty/TinyEXIF/")
+# libraw库
+include_directories("./3rdparty/libraw/libraw/")
+link_directories("./3rdparty/libraw/lib/")
 
 add_definitions(-DTINYEXIF_NO_XMP_SUPPORT)
 
@@ -33,8 +41,8 @@ set(PROJECT_SOURCES
         CustomOpenGLWidget.h CustomOpenGLWidget.cpp
         CustomResizableWidget.cpp CustomResizableWidget.h
         ImageReader.h ImageReader.cpp
-        ./3rdparty/TinyEXIF/TinyEXIF.cpp
-        ./3rdparty/TinyEXIF/TinyEXIF.h
+        ./3rdparty/TinyEXIF/TinyEXIF.cpp ./3rdparty/TinyEXIF/TinyEXIF.h
+        Utils.cpp Utils.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -63,7 +71,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(ImageViewer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets heif.lib libx265.lib de265.lib jpeg.lib)
+target_link_libraries(ImageViewer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets heif.lib libx265.lib de265.lib jpeg.lib libraw.lib)
 target_link_libraries(ImageViewer PRIVATE Qt${QT_VERSION_MAJOR}::OpenGLWidgets)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

@@ -6,41 +6,16 @@
 #include <QDir>
 #include <QDebug>
 
-FileType getFileType(const std::string& filename) {
-    size_t dotIndex = filename.find_last_of(".");
-    if (dotIndex != std::string::npos && dotIndex < filename.length() - 1) {
-        std::string extension = filename.substr(dotIndex + 1);
-        // 将扩展名转换为小写字母
-        for (char& c : extension) {
-            c = tolower(c);
-        }
-        // 判断文件类型
-        if (extension == "jpg" || extension == "jpeg") {
-            return FileType::JPG_IMG;
-        } else if (extension == "png") {
-            return FileType::PNG_IMG;
-        } else if (extension == "raw") {
-            return FileType::RAW_IMG;
-        } else if (extension == "heif" || extension == "heic") {
-            return FileType::HEIF_IMG;
-        } else {
-            return FileType::OTHER_FILE;
-        }
-    } else {
-        return FileType::OTHER_FILE;
-    }
-}
-
 MainWindow::MainWindow(QString url, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , m_url(url)
 {
     ui->setupUi(this);
 
-    m_url = "H:\\DataCenter\\Photo\\#2 Photo\\other\\008z4Pzpgy1hoi778entpj30u014t77b.jpg";
-    m_currDir = "H:\\DataCenter\\Photo\\#2 Photo\\other";
-    m_file = QFileInfo(m_url);
+    url = "C:\\Users\\hrkkk\\Desktop\\DSC00902.JPG";
+
+    m_currFileInfo = QFileInfo(url);
+    m_currDir = m_currFileInfo.dir().path();
 
     // 默认全屏显示
     this->showMaximized();
@@ -62,17 +37,17 @@ MainWindow::MainWindow(QString url, QWidget *parent)
 
     });
     connect(ui->btn_zoomIn, &QPushButton::clicked, this, [=]() {
-        ui->openGLWidget->slot_changeScale(1);
+        ui->openGLWidget_1_1->slot_changeScale(1);
     });
     connect(ui->btn_zoomOut, &QPushButton::clicked, this, [=]() {
-        ui->openGLWidget->slot_changeScale(2);
+        ui->openGLWidget_1_1->slot_changeScale(2);
     });
     connect(ui->btn_rotate, &QPushButton::clicked, this, [=]() {
-        ui->openGLWidget->slot_rotateImage();
+        ui->openGLWidget_1_1->slot_rotateImage();
     });
 
-    connect(this, &MainWindow::sig_showImage, ui->openGLWidget, &CustomOpenGLWidget::slot_showImage);
-    connect(ui->openGLWidget, &CustomOpenGLWidget::sign_scaleChanged, this, [=](double scale) {
+    connect(this, &MainWindow::sig_showImage, ui->openGLWidget_1_1, &CustomOpenGLWidget::slot_showImage);
+    connect(ui->openGLWidget_1_1, &CustomOpenGLWidget::sign_scaleChanged, this, [=](double scale) {
         ui->label_zoomPercent->setText(QString("%1%").arg((int)(scale * 100)));
     });
 
@@ -91,14 +66,14 @@ MainWindow::MainWindow(QString url, QWidget *parent)
 
     connect(ui->listWidget, &QListWidget::itemClicked, this, [=](QListWidgetItem *item) {
         QLabel* label = static_cast<QLabel*>(ui->listWidget->itemWidget(item));
-        m_url = m_currDir + "\\" + label->text();
-        loadImage(m_url.toStdString());
+        m_currFileInfo = QFileInfo(m_currDir + "\\" + label->text());
+        loadImage(m_currFileInfo.filePath().toStdString());
     });
 
     // 加载图片
     getAllFile();
     updateFileList();
-    loadImage(m_url.toStdString());
+    loadImage(m_currFileInfo.filePath().toStdString());
 }
 
 MainWindow::~MainWindow()
@@ -108,13 +83,32 @@ MainWindow::~MainWindow()
 
 void MainWindow::loadImage(const std::string& filename)
 {
+    int orientation = 0;
     std::shared_ptr<ImageData> imageData;
-
-    ImageReader::readJPG(filename, imageData);
-
-    int orientation;
     std::vector<std::pair<std::string, std::string>> exifInfo;
-    ImageReader::readImageExif(filename, exifInfo, orientation);
+
+    FileType fileType = Utils::getFileType(filename);
+    switch (fileType) {
+        case FileType::JPG_IMG:
+            ImageReader::readJPG(filename, imageData);
+            ImageReader::readImageExif(filename, exifInfo, orientation);
+            break;
+        case FileType::PNG_IMG:
+            ImageReader::readPNG(filename, imageData);
+            break;
+        case FileType::HEIF_IMG:
+            ImageReader::readHEIF(filename, imageData);
+            break;
+        case FileType::RAW_IMG:
+            ImageReader::readRaw(filename, imageData);
+            break;
+        default:
+            break;
+    }
+
+    // 显示图像
+    emit sig_showImage(imageData, orientation);
+    // 显示图像信息
     if (!exifInfo.empty()) {
         for (auto item : exifInfo) {
             QString tmp = QString("%1 : %2").arg(QString::fromStdString(item.first)).arg(QString::fromStdString(item.second));
@@ -122,15 +116,12 @@ void MainWindow::loadImage(const std::string& filename)
         }
     }
 
-    // 显示图像
-    emit sig_showImage(imageData, orientation);
-
     // 显示标头
-    ui->label_name->setText(m_file.fileName());
+    ui->label_name->setText(m_currFileInfo.fileName());
     ui->label_dimensions->setText(QString("%1x%2x%3").arg(imageData->width).arg(imageData->height).arg(imageData->channels));
-    ui->label_size->setText(QString("%1B").arg(m_file.size()));
+    ui->label_size->setText(QString::fromStdString(Utils::byteToText(m_currFileInfo.size())));
     // 显示信息
-    ui->label_imageIndex->setText(QString("%1 / %2").arg(m_currIndex).arg(m_fileList.size()));
+    // ui->label_imageIndex->setText(QString("%1 / %2").arg(m_currIndex).arg(m_fileList.size()));
 }
 
 /*
@@ -147,7 +138,7 @@ void MainWindow::getAllFile()
             if (fs::is_regular_file(entry.status())) {
                 // 检查文件是否隐藏
                 if (!entry.path().empty() && entry.path().filename().string()[0] != '.') {
-                    m_allFiles.push_back({entry.path().filename(), getFileType(entry.path().string())});
+                    m_allFiles.push_back({entry.path().filename(), Utils::getFileType(entry.path().string())});
                 }
             }
         }

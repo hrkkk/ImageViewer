@@ -6,10 +6,18 @@
 CustomOpenGLWidget::CustomOpenGLWidget(QWidget* parent): QOpenGLWidget(parent)
 {}
 
+float offsetX = 0.0f, offsetY = 0.0f;
+float lastX = 0.0f, lastY = 0.0f;
+bool isPressed = false;
+
 void CustomOpenGLWidget::mousePressEvent(QMouseEvent* event)
 {
     if (event->button() == Qt::RightButton) {
         emit sign_mouseClicked(event->globalPosition().x(), event->globalPosition().y());
+    } else if (event->button() == Qt::LeftButton) {
+        isPressed = true;
+        lastX = offsetX = event->pos().x();
+        lastY = offsetY = event->pos().y();
     }
 }
 
@@ -34,18 +42,36 @@ void CustomOpenGLWidget::wheelEvent(QWheelEvent* event)
     emit sign_scaleChanged(m_scaleRatio);
 }
 
+void CustomOpenGLWidget::mouseMoveEvent(QMouseEvent* event)
+{
+    if (isPressed) {
+        offsetX += event->pos().x() - lastX;
+        offsetY += event->pos().y() - lastY;
+    }
+    lastX = event->pos().x();
+    lastY = event->pos().y();
+    qDebug() << "move" << offsetX << offsetY;
+}
+
+void CustomOpenGLWidget::mouseReleaseEvent(QMouseEvent* event)
+{
+    isPressed = false;
+}
+
 #define GET_GLSTR(x) #x
 const char* vsrc = GET_GLSTR(
     attribute vec4 inPosition;
     attribute vec2 inTexCoord;
 
     uniform int orientation;
+    uniform float offsetX;
+    uniform float offsetY;
 
     varying vec2 texCoord;
 
     void main(void)
     {
-        gl_Position = inPosition;
+        gl_Position = inPosition + vec4(offsetX, offsetY, 0.0f, 0.0f);
 
         // 根据旋转角度变换纹理坐标
         vec2 rotatedTexCoords;
@@ -170,16 +196,6 @@ void CustomOpenGLWidget::resizeGL(int w, int h)
     // 计算缩放后的图像尺寸
     m_viewportWidth = (m_isRotated ? m_image->height : m_image->width) * scale * m_scaleRatio;
     m_viewportHeight = (m_isRotated ? m_image->width : m_image->height) * scale * m_scaleRatio;
-
-    // double imageRatio = (double)m_imageWidth / m_imageHeight;
-    // if (imageRatio <= 1.0) {
-    //     m_viewportHeight = windowHeight;
-    //     m_viewportWidth = windowHeight * imageRatio;
-    // } else {
-    //     m_viewportWidth = windowWidth;
-    //     m_viewportHeight = windowWidth / imageRatio;
-    // }
-
     // 计算图像在窗口中的显示位置
     m_horizontalOffset = (windowWidth - m_viewportWidth) / 2;
     m_verticalOffset = (windowHeight - m_viewportHeight) / 2;
@@ -196,9 +212,6 @@ void CustomOpenGLWidget::paintGL()
     glViewport(m_horizontalOffset, m_verticalOffset, m_viewportWidth, m_viewportHeight);
 
     glBindTexture(GL_TEXTURE_2D, texture);
-    // 设置纹理参数
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     if (m_image->channels == 3) {
@@ -207,6 +220,8 @@ void CustomOpenGLWidget::paintGL()
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_image->width, m_image->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_image->pixels);
     }
 
+    glUniform1i(glGetUniformLocation(program, "offsetX"), offsetX);
+    glUniform1i(glGetUniformLocation(program, "offsetY"), offsetX);
     glUniform1i(glGetUniformLocation(program, "orientation"), m_orientation);
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
