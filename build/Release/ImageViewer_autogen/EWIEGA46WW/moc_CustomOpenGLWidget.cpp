@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'CustomOpenGLWidget.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.6.1)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.6.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -21,7 +21,7 @@ QT_BEGIN_MOC_NAMESPACE
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'CustomOpenGLWidget.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.6.1. It"
+#error "This file was generated using the moc from 6.6.3. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -37,7 +37,7 @@ namespace {
 
 #ifdef QT_MOC_HAS_STRINGDATA
 struct qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS_t {};
-static constexpr auto qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS = QtMocHelpers::stringData(
+constexpr auto qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS = QtMocHelpers::stringData(
     "CustomOpenGLWidget",
     "sign_mouseClicked",
     "",
@@ -46,11 +46,8 @@ static constexpr auto qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS = QtMoc
     "sign_scaleChanged",
     "scale",
     "slot_showImage",
-    "uint8_t*",
+    "std::shared_ptr<ImageData>&",
     "data",
-    "width",
-    "height",
-    "channels",
     "orientation",
     "slot_resizeViewport",
     "slot_changeScale",
@@ -59,7 +56,7 @@ static constexpr auto qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS = QtMoc
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS_t {
-    uint offsetsAndSizes[36];
+    uint offsetsAndSizes[30];
     char stringdata0[19];
     char stringdata1[18];
     char stringdata2[1];
@@ -68,16 +65,13 @@ struct qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS_t {
     char stringdata5[18];
     char stringdata6[6];
     char stringdata7[15];
-    char stringdata8[9];
+    char stringdata8[28];
     char stringdata9[5];
-    char stringdata10[6];
-    char stringdata11[7];
-    char stringdata12[9];
-    char stringdata13[12];
-    char stringdata14[20];
-    char stringdata15[17];
-    char stringdata16[5];
-    char stringdata17[17];
+    char stringdata10[12];
+    char stringdata11[20];
+    char stringdata12[17];
+    char stringdata13[5];
+    char stringdata14[17];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -91,16 +85,13 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS_t qt
         QT_MOC_LITERAL(42, 17),  // "sign_scaleChanged"
         QT_MOC_LITERAL(60, 5),  // "scale"
         QT_MOC_LITERAL(66, 14),  // "slot_showImage"
-        QT_MOC_LITERAL(81, 8),  // "uint8_t*"
-        QT_MOC_LITERAL(90, 4),  // "data"
-        QT_MOC_LITERAL(95, 5),  // "width"
-        QT_MOC_LITERAL(101, 6),  // "height"
-        QT_MOC_LITERAL(108, 8),  // "channels"
-        QT_MOC_LITERAL(117, 11),  // "orientation"
-        QT_MOC_LITERAL(129, 19),  // "slot_resizeViewport"
-        QT_MOC_LITERAL(149, 16),  // "slot_changeScale"
-        QT_MOC_LITERAL(166, 4),  // "flag"
-        QT_MOC_LITERAL(171, 16)   // "slot_rotateImage"
+        QT_MOC_LITERAL(81, 27),  // "std::shared_ptr<ImageData>&"
+        QT_MOC_LITERAL(109, 4),  // "data"
+        QT_MOC_LITERAL(114, 11),  // "orientation"
+        QT_MOC_LITERAL(126, 19),  // "slot_resizeViewport"
+        QT_MOC_LITERAL(146, 16),  // "slot_changeScale"
+        QT_MOC_LITERAL(163, 4),  // "flag"
+        QT_MOC_LITERAL(168, 16)   // "slot_rotateImage"
     },
     "CustomOpenGLWidget",
     "sign_mouseClicked",
@@ -110,11 +101,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS_t qt
     "sign_scaleChanged",
     "scale",
     "slot_showImage",
-    "uint8_t*",
+    "std::shared_ptr<ImageData>&",
     "data",
-    "width",
-    "height",
-    "channels",
     "orientation",
     "slot_resizeViewport",
     "slot_changeScale",
@@ -143,19 +131,19 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSCustomOpenGLWidgetENDCLASS[] = {
        5,    1,   55,    2, 0x06,    4 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       7,    5,   58,    2, 0x0a,    6 /* Public */,
-      14,    0,   69,    2, 0x0a,   12 /* Public */,
-      15,    1,   70,    2, 0x0a,   13 /* Public */,
-      17,    0,   73,    2, 0x0a,   15 /* Public */,
+       7,    2,   58,    2, 0x0a,    6 /* Public */,
+      11,    0,   63,    2, 0x0a,    9 /* Public */,
+      12,    1,   64,    2, 0x0a,   10 /* Public */,
+      14,    0,   67,    2, 0x0a,   12 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    3,    4,
     QMetaType::Void, QMetaType::Double,    6,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 8, QMetaType::UInt, QMetaType::UInt, QMetaType::UInt, QMetaType::Int,    9,   10,   11,   12,   13,
+    QMetaType::Void, 0x80000000 | 8, QMetaType::Int,    9,   10,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   16,
+    QMetaType::Void, QMetaType::Int,   13,
     QMetaType::Void,
 
        0        // eod
@@ -179,10 +167,7 @@ Q_CONSTINIT const QMetaObject CustomOpenGLWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<double, std::false_type>,
         // method 'slot_showImage'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<uint8_t *, std::false_type>,
-        QtPrivate::TypeAndForceComplete<uint, std::false_type>,
-        QtPrivate::TypeAndForceComplete<uint, std::false_type>,
-        QtPrivate::TypeAndForceComplete<uint, std::false_type>,
+        QtPrivate::TypeAndForceComplete<std::shared_ptr<ImageData> &, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'slot_resizeViewport'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -203,7 +188,7 @@ void CustomOpenGLWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         switch (_id) {
         case 0: _t->sign_mouseClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 1: _t->sign_scaleChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 2: _t->slot_showImage((*reinterpret_cast< std::add_pointer_t<uint8_t*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5]))); break;
+        case 2: _t->slot_showImage((*reinterpret_cast< std::add_pointer_t<std::shared_ptr<ImageData>&>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 3: _t->slot_resizeViewport(); break;
         case 4: _t->slot_changeScale((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 5: _t->slot_rotateImage(); break;

@@ -51,13 +51,15 @@ constexpr auto qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS = QtMocHelpers
     "width",
     "height",
     "channels",
+    "orientation",
     "slot_resizeViewport",
     "slot_changeScale",
-    "flag"
+    "flag",
+    "slot_rotateImage"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS_t {
-    uint offsetsAndSizes[32];
+    uint offsetsAndSizes[36];
     char stringdata0[19];
     char stringdata1[18];
     char stringdata2[1];
@@ -71,9 +73,11 @@ struct qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS_t {
     char stringdata10[6];
     char stringdata11[7];
     char stringdata12[9];
-    char stringdata13[20];
-    char stringdata14[17];
-    char stringdata15[5];
+    char stringdata13[12];
+    char stringdata14[20];
+    char stringdata15[17];
+    char stringdata16[5];
+    char stringdata17[17];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -92,9 +96,11 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS_t qt
         QT_MOC_LITERAL(95, 5),  // "width"
         QT_MOC_LITERAL(101, 6),  // "height"
         QT_MOC_LITERAL(108, 8),  // "channels"
-        QT_MOC_LITERAL(117, 19),  // "slot_resizeViewport"
-        QT_MOC_LITERAL(137, 16),  // "slot_changeScale"
-        QT_MOC_LITERAL(154, 4)   // "flag"
+        QT_MOC_LITERAL(117, 11),  // "orientation"
+        QT_MOC_LITERAL(129, 19),  // "slot_resizeViewport"
+        QT_MOC_LITERAL(149, 16),  // "slot_changeScale"
+        QT_MOC_LITERAL(166, 4),  // "flag"
+        QT_MOC_LITERAL(171, 16)   // "slot_rotateImage"
     },
     "CustomOpenGLWidget",
     "sign_mouseClicked",
@@ -109,9 +115,11 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSCustomOpenGLWidgetENDCLASS_t qt
     "width",
     "height",
     "channels",
+    "orientation",
     "slot_resizeViewport",
     "slot_changeScale",
-    "flag"
+    "flag",
+    "slot_rotateImage"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -123,7 +131,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSCustomOpenGLWidgetENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -131,22 +139,24 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSCustomOpenGLWidgetENDCLASS[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,   44,    2, 0x06,    1 /* Public */,
-       5,    1,   49,    2, 0x06,    4 /* Public */,
+       1,    2,   50,    2, 0x06,    1 /* Public */,
+       5,    1,   55,    2, 0x06,    4 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       7,    4,   52,    2, 0x0a,    6 /* Public */,
-      13,    0,   61,    2, 0x0a,   11 /* Public */,
-      14,    1,   62,    2, 0x0a,   12 /* Public */,
+       7,    5,   58,    2, 0x0a,    6 /* Public */,
+      14,    0,   69,    2, 0x0a,   12 /* Public */,
+      15,    1,   70,    2, 0x0a,   13 /* Public */,
+      17,    0,   73,    2, 0x0a,   15 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    3,    4,
     QMetaType::Void, QMetaType::Double,    6,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 8, QMetaType::UInt, QMetaType::UInt, QMetaType::UInt,    9,   10,   11,   12,
+    QMetaType::Void, 0x80000000 | 8, QMetaType::UInt, QMetaType::UInt, QMetaType::UInt, QMetaType::Int,    9,   10,   11,   12,   13,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   15,
+    QMetaType::Void, QMetaType::Int,   16,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -173,11 +183,14 @@ Q_CONSTINIT const QMetaObject CustomOpenGLWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<uint, std::false_type>,
         QtPrivate::TypeAndForceComplete<uint, std::false_type>,
         QtPrivate::TypeAndForceComplete<uint, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'slot_resizeViewport'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'slot_changeScale'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'slot_rotateImage'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -190,9 +203,10 @@ void CustomOpenGLWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         switch (_id) {
         case 0: _t->sign_mouseClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 1: _t->sign_scaleChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 2: _t->slot_showImage((*reinterpret_cast< std::add_pointer_t<uint8_t*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[4]))); break;
+        case 2: _t->slot_showImage((*reinterpret_cast< std::add_pointer_t<uint8_t*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5]))); break;
         case 3: _t->slot_resizeViewport(); break;
         case 4: _t->slot_changeScale((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 5: _t->slot_rotateImage(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -235,13 +249,13 @@ int CustomOpenGLWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }

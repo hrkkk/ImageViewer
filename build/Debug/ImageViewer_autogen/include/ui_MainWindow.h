@@ -19,6 +19,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
@@ -44,6 +45,7 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QWidget *mainArea;
     QHBoxLayout *horizontalLayout_4;
+    QPlainTextEdit *plainTextEdit;
     CustomOpenGLWidget *openGLWidget;
     QWidget *widget;
     QVBoxLayout *verticalLayout_2;
@@ -156,6 +158,14 @@ public:
         mainArea->setSizePolicy(sizePolicy2);
         horizontalLayout_4 = new QHBoxLayout(mainArea);
         horizontalLayout_4->setObjectName("horizontalLayout_4");
+        plainTextEdit = new QPlainTextEdit(mainArea);
+        plainTextEdit->setObjectName("plainTextEdit");
+        plainTextEdit->setMaximumSize(QSize(250, 16777215));
+        plainTextEdit->setUndoRedoEnabled(false);
+        plainTextEdit->setReadOnly(true);
+
+        horizontalLayout_4->addWidget(plainTextEdit);
+
         openGLWidget = new CustomOpenGLWidget(mainArea);
         openGLWidget->setObjectName("openGLWidget");
 

@@ -6,6 +6,26 @@
 #include <QMouseEvent>
 #include <QtOpenGLWidgets/QOpenGLWidget>
 
+#include <QDebug>
+
+struct ImageData {
+    uint8_t* pixels;
+    uint width;
+    uint height;
+    uint channels;
+
+    ImageData(int w, int h, int ch) : width(w), height(h), channels(ch) {
+        pixels = new uint8_t[w * h * ch];
+        // qDebug() << "create" << width << "x" << height << "x" << channels;
+    }
+
+    ~ImageData() {
+        delete[] pixels;
+        // qDebug() << "release" << width << "x" << height << "x" << channels;
+    }
+};
+
+
 class CustomOpenGLWidget : public QOpenGLWidget, QOpenGLFunctions
 {
     Q_OBJECT
@@ -17,7 +37,7 @@ signals:
     void sign_scaleChanged(double scale);
 
 public slots:
-    void slot_showImage(uint8_t* data, uint width, uint height, uint channels, int orientation);
+    void slot_showImage(std::shared_ptr<ImageData>& data, int orientation);
     void slot_resizeViewport();
     void slot_changeScale(int flag);
     void slot_rotateImage();
@@ -45,10 +65,7 @@ private:
     bool m_isRotated = false;
 
     // 图像数据
-    uint8_t* m_imageData;
-    uint m_imageWidth;
-    uint m_imageHeight;
-    uint m_imageChannels;
+    std::shared_ptr<ImageData> m_image;
 };
 
 #endif // CUSTOMOPENGLWIDGET_H

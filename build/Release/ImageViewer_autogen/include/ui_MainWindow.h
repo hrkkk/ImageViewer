@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created by: Qt User Interface Compiler version 6.6.1
+** Created by: Qt User Interface Compiler version 6.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -24,6 +24,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "CustomResizableWidget.h"
 #include "customopenglwidget.h"
 
 QT_BEGIN_NAMESPACE
@@ -45,8 +46,14 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QWidget *mainArea;
     QHBoxLayout *horizontalLayout_4;
+    QWidget *widget_2;
+    QHBoxLayout *horizontalLayout_6;
     QPlainTextEdit *plainTextEdit;
+    CustomResizableWidget *widget_3;
     CustomOpenGLWidget *openGLWidget;
+    QWidget *widget_4;
+    QHBoxLayout *horizontalLayout_7;
+    CustomResizableWidget *widget_5;
     QWidget *widget;
     QVBoxLayout *verticalLayout_2;
     QGroupBox *groupBox;
@@ -80,14 +87,14 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(1034, 807);
-        QSizePolicy sizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Ignored, QSizePolicy::Policy::Ignored);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(centralwidget->sizePolicy().hasHeightForWidth());
@@ -108,7 +115,7 @@ public:
 ""));
         horizontalLayout_2 = new QHBoxLayout(headBar);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
 
@@ -142,7 +149,7 @@ public:
 
         horizontalLayout_2->addLayout(horizontalLayout);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer_2);
 
@@ -151,27 +158,60 @@ public:
 
         mainArea = new QWidget(centralwidget);
         mainArea->setObjectName("mainArea");
-        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        QSizePolicy sizePolicy2(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(mainArea->sizePolicy().hasHeightForWidth());
         mainArea->setSizePolicy(sizePolicy2);
         horizontalLayout_4 = new QHBoxLayout(mainArea);
         horizontalLayout_4->setObjectName("horizontalLayout_4");
-        plainTextEdit = new QPlainTextEdit(mainArea);
+        widget_2 = new QWidget(mainArea);
+        widget_2->setObjectName("widget_2");
+        widget_2->setMaximumSize(QSize(260, 16777215));
+        horizontalLayout_6 = new QHBoxLayout(widget_2);
+        horizontalLayout_6->setSpacing(0);
+        horizontalLayout_6->setObjectName("horizontalLayout_6");
+        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
+        plainTextEdit = new QPlainTextEdit(widget_2);
         plainTextEdit->setObjectName("plainTextEdit");
         plainTextEdit->setMaximumSize(QSize(250, 16777215));
         plainTextEdit->setUndoRedoEnabled(false);
         plainTextEdit->setReadOnly(true);
 
-        horizontalLayout_4->addWidget(plainTextEdit);
+        horizontalLayout_6->addWidget(plainTextEdit);
+
+        widget_3 = new CustomResizableWidget(widget_2);
+        widget_3->setObjectName("widget_3");
+        widget_3->setMinimumSize(QSize(10, 0));
+        widget_3->setMaximumSize(QSize(10, 16777215));
+        widget_3->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 0);"));
+
+        horizontalLayout_6->addWidget(widget_3);
+
+
+        horizontalLayout_4->addWidget(widget_2);
 
         openGLWidget = new CustomOpenGLWidget(mainArea);
         openGLWidget->setObjectName("openGLWidget");
 
         horizontalLayout_4->addWidget(openGLWidget);
 
-        widget = new QWidget(mainArea);
+        widget_4 = new QWidget(mainArea);
+        widget_4->setObjectName("widget_4");
+        widget_4->setMaximumSize(QSize(210, 16777215));
+        horizontalLayout_7 = new QHBoxLayout(widget_4);
+        horizontalLayout_7->setSpacing(0);
+        horizontalLayout_7->setObjectName("horizontalLayout_7");
+        horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
+        widget_5 = new CustomResizableWidget(widget_4);
+        widget_5->setObjectName("widget_5");
+        widget_5->setMinimumSize(QSize(10, 0));
+        widget_5->setMaximumSize(QSize(10, 16777215));
+        widget_5->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 0);"));
+
+        horizontalLayout_7->addWidget(widget_5);
+
+        widget = new QWidget(widget_4);
         widget->setObjectName("widget");
         widget->setMaximumSize(QSize(200, 16777215));
         verticalLayout_2 = new QVBoxLayout(widget);
@@ -209,7 +249,10 @@ public:
         verticalLayout_2->addWidget(listWidget);
 
 
-        horizontalLayout_4->addWidget(widget);
+        horizontalLayout_7->addWidget(widget);
+
+
+        horizontalLayout_4->addWidget(widget_4);
 
 
         verticalLayout->addWidget(mainArea);
@@ -218,7 +261,7 @@ public:
         bottomArea->setObjectName("bottomArea");
         horizontalLayout_5 = new QHBoxLayout(bottomArea);
         horizontalLayout_5->setObjectName("horizontalLayout_5");
-        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_5->addItem(horizontalSpacer_5);
 
@@ -356,7 +399,7 @@ public:
 
         horizontalLayout_5->addWidget(bottomBar);
 
-        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_5->addItem(horizontalSpacer_6);
 

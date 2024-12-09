@@ -47,7 +47,7 @@ QLabel {
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -99,7 +99,7 @@ QLabel {
        <item>
         <spacer name="horizontalSpacer_2">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -122,72 +122,164 @@ QLabel {
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0,0">
        <item>
-        <widget class="QPlainTextEdit" name="plainTextEdit">
+        <widget class="QWidget" name="widget_2" native="true">
          <property name="maximumSize">
           <size>
-           <width>250</width>
+           <width>260</width>
            <height>16777215</height>
           </size>
          </property>
-         <property name="undoRedoEnabled">
-          <bool>false</bool>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPlainTextEdit" name="plainTextEdit">
+            <property name="maximumSize">
+             <size>
+              <width>250</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="undoRedoEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="CustomResizableWidget" name="widget_3" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>10</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>10</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 0);</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
         <widget class="CustomOpenGLWidget" name="openGLWidget"/>
        </item>
        <item>
-        <widget class="QWidget" name="widget" native="true">
+        <widget class="QWidget" name="widget_4" native="true">
          <property name="maximumSize">
           <size>
-           <width>200</width>
+           <width>210</width>
            <height>16777215</height>
           </size>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
-           <widget class="QGroupBox" name="groupBox">
-            <property name="title">
-             <string>图片类型</string>
+           <widget class="CustomResizableWidget" name="widget_5" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>10</width>
+              <height>0</height>
+             </size>
             </property>
-            <layout class="QGridLayout" name="gridLayout">
-             <item row="0" column="0">
-              <widget class="QCheckBox" name="cBox_typeJpg">
-               <property name="text">
-                <string>JPG</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QCheckBox" name="cBox_typePng">
-               <property name="text">
-                <string>PNG</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QCheckBox" name="cBox_typeHeic">
-               <property name="text">
-                <string>HEIC</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QCheckBox" name="cBox_typeRaw">
-               <property name="text">
-                <string>RAW</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <property name="maximumSize">
+             <size>
+              <width>10</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 0);</string>
+            </property>
            </widget>
           </item>
           <item>
-           <widget class="QListWidget" name="listWidget"/>
+           <widget class="QWidget" name="widget" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QGroupBox" name="groupBox">
+               <property name="title">
+                <string>图片类型</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout">
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="cBox_typeJpg">
+                  <property name="text">
+                   <string>JPG</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QCheckBox" name="cBox_typePng">
+                  <property name="text">
+                   <string>PNG</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="cBox_typeHeic">
+                  <property name="text">
+                   <string>HEIC</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QCheckBox" name="cBox_typeRaw">
+                  <property name="text">
+                   <string>RAW</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="listWidget"/>
+             </item>
+            </layout>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -201,7 +293,7 @@ QLabel {
        <item>
         <spacer name="horizontalSpacer_5">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -529,7 +621,7 @@ QLabel {
        <item>
         <spacer name="horizontalSpacer_6">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -550,6 +642,12 @@ QLabel {
    <class>CustomOpenGLWidget</class>
    <extends>QOpenGLWidget</extends>
    <header>customopenglwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CustomResizableWidget</class>
+   <extends>QWidget</extends>
+   <header>CustomResizableWidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

@@ -3,7 +3,8 @@
 #include <QDebug>
 #include <QMouseEvent>
 
-CustomOpenGLWidget::CustomOpenGLWidget(QWidget* parent): QOpenGLWidget(parent) {}
+CustomOpenGLWidget::CustomOpenGLWidget(QWidget* parent): QOpenGLWidget(parent)
+{}
 
 void CustomOpenGLWidget::mousePressEvent(QMouseEvent* event)
 {
@@ -152,19 +153,23 @@ void CustomOpenGLWidget::initializeGL()
 
 void CustomOpenGLWidget::resizeGL(int w, int h)
 {
+    if (m_image == nullptr) {
+        return;
+    }
+
     double ratio = devicePixelRatio();
     // 计算窗口的实际尺寸
     int windowWidth = w * ratio;
     int windowHeight = h * ratio;
     // 计算宽度的缩放比例
-    double scaleWidth = (double)windowWidth / (m_isRotated ? m_imageHeight : m_imageWidth);
+    double scaleWidth = (double)windowWidth / (m_isRotated ? m_image->height : m_image->width);
     // 计算高度的缩放比例
-    double scaleHeight = (double)windowHeight / (m_isRotated ? m_imageWidth : m_imageHeight);
+    double scaleHeight = (double)windowHeight / (m_isRotated ? m_image->width : m_image->height);
     // 选取较小的缩放比例以保证图片完整的显示在窗口中，同时不改变图片的宽高比
     double scale = std::min(scaleWidth, scaleHeight);
     // 计算缩放后的图像尺寸
-    m_viewportWidth = (m_isRotated ? m_imageHeight : m_imageWidth) * scale * m_scaleRatio;
-    m_viewportHeight = (m_isRotated ? m_imageWidth : m_imageHeight) * scale * m_scaleRatio;
+    m_viewportWidth = (m_isRotated ? m_image->height : m_image->width) * scale * m_scaleRatio;
+    m_viewportHeight = (m_isRotated ? m_image->width : m_image->height) * scale * m_scaleRatio;
 
     // double imageRatio = (double)m_imageWidth / m_imageHeight;
     // if (imageRatio <= 1.0) {
@@ -184,26 +189,31 @@ void CustomOpenGLWidget::resizeGL(int w, int h)
 
 void CustomOpenGLWidget::paintGL()
 {
+    if (m_image == nullptr) {
+        return;
+    }
+
     glViewport(m_horizontalOffset, m_verticalOffset, m_viewportWidth, m_viewportHeight);
 
     glBindTexture(GL_TEXTURE_2D, texture);
+    // 设置纹理参数
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    if (m_imageChannels == 3) {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_imageWidth, m_imageHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, m_imageData);
-    } else if (m_imageChannels == 4){
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_imageWidth, m_imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_imageData);
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    if (m_image->channels == 3) {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_image->width, m_image->height, 0, GL_RGB, GL_UNSIGNED_BYTE, m_image->pixels);
+    } else if (m_image->channels == 4){
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_image->width, m_image->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_image->pixels);
     }
 
     glUniform1i(glGetUniformLocation(program, "orientation"), m_orientation);
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 
-void CustomOpenGLWidget::slot_showImage(uint8_t* data, uint width, uint height, uint channels, int orientation)
+void CustomOpenGLWidget::slot_showImage(std::shared_ptr<ImageData>& imageData, int orientation)
 {
-    m_imageData = data;
-    m_imageWidth = width;
-    m_imageHeight = height;
-    m_imageChannels = channels;
+    m_image = imageData;
     m_orientation = orientation;
     if (m_orientation >= 5 && m_orientation <= 8) {
         m_isRotated = true;

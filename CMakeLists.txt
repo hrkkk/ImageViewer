@@ -31,6 +31,7 @@ set(PROJECT_SOURCES
         MainWindow.h
         MainWindow.ui
         CustomOpenGLWidget.h CustomOpenGLWidget.cpp
+        CustomResizableWidget.cpp CustomResizableWidget.h
         ImageReader.h ImageReader.cpp
         ./3rdparty/TinyEXIF/TinyEXIF.cpp
         ./3rdparty/TinyEXIF/TinyEXIF.h

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'MainWindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.6.1)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.6.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -22,7 +22,7 @@ QT_BEGIN_MOC_NAMESPACE
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'MainWindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.6.1. It"
+#error "This file was generated using the moc from 6.6.3. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -38,29 +38,23 @@ namespace {
 
 #ifdef QT_MOC_HAS_STRINGDATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {};
-static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::stringData(
+constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::stringData(
     "MainWindow",
     "sig_showImage",
     "",
-    "uint8_t*",
-    "data",
-    "width",
-    "height",
-    "channels",
+    "std::shared_ptr<ImageData>&",
+    "imageData",
     "orientation"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[18];
+    uint offsetsAndSizes[12];
     char stringdata0[11];
     char stringdata1[14];
     char stringdata2[1];
-    char stringdata3[9];
-    char stringdata4[5];
-    char stringdata5[6];
-    char stringdata6[7];
-    char stringdata7[9];
-    char stringdata8[12];
+    char stringdata3[28];
+    char stringdata4[10];
+    char stringdata5[12];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -69,21 +63,15 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(0, 10),  // "MainWindow"
         QT_MOC_LITERAL(11, 13),  // "sig_showImage"
         QT_MOC_LITERAL(25, 0),  // ""
-        QT_MOC_LITERAL(26, 8),  // "uint8_t*"
-        QT_MOC_LITERAL(35, 4),  // "data"
-        QT_MOC_LITERAL(40, 5),  // "width"
-        QT_MOC_LITERAL(46, 6),  // "height"
-        QT_MOC_LITERAL(53, 8),  // "channels"
-        QT_MOC_LITERAL(62, 11)   // "orientation"
+        QT_MOC_LITERAL(26, 27),  // "std::shared_ptr<ImageData>&"
+        QT_MOC_LITERAL(54, 9),  // "imageData"
+        QT_MOC_LITERAL(64, 11)   // "orientation"
     },
     "MainWindow",
     "sig_showImage",
     "",
-    "uint8_t*",
-    "data",
-    "width",
-    "height",
-    "channels",
+    "std::shared_ptr<ImageData>&",
+    "imageData",
     "orientation"
 };
 #undef QT_MOC_LITERAL
@@ -104,10 +92,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    5,   20,    2, 0x06,    1 /* Public */,
+       1,    2,   20,    2, 0x06,    1 /* Public */,
 
  // signals: parameters
-    QMetaType::Void, 0x80000000 | 3, QMetaType::UInt, QMetaType::UInt, QMetaType::UInt, QMetaType::Int,    4,    5,    6,    7,    8,
+    QMetaType::Void, 0x80000000 | 3, QMetaType::Int,    4,    5,
 
        0        // eod
 };
@@ -123,10 +111,7 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
         // method 'sig_showImage'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<uint8_t *, std::false_type>,
-        QtPrivate::TypeAndForceComplete<uint, std::false_type>,
-        QtPrivate::TypeAndForceComplete<uint, std::false_type>,
-        QtPrivate::TypeAndForceComplete<uint, std::false_type>,
+        QtPrivate::TypeAndForceComplete<std::shared_ptr<ImageData> &, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
@@ -138,13 +123,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->sig_showImage((*reinterpret_cast< std::add_pointer_t<uint8_t*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[5]))); break;
+        case 0: _t->sig_showImage((*reinterpret_cast< std::add_pointer_t<std::shared_ptr<ImageData>&>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (MainWindow::*)(uint8_t * , uint , uint , uint , int );
+            using _t = void (MainWindow::*)(std::shared_ptr<ImageData> & , int );
             if (_t _q_method = &MainWindow::sig_showImage; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
@@ -184,9 +169,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MainWindow::sig_showImage(uint8_t * _t1, uint _t2, uint _t3, uint _t4, int _t5)
+void MainWindow::sig_showImage(std::shared_ptr<ImageData> & _t1, int _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

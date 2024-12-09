@@ -112,13 +112,12 @@ int ImageReader::readPNG(const std::string& filename, uint8_t*& dataPtr, int& wi
     return 0;
 }
 
-int ImageReader::readJPG(const std::string& filename, uint8_t*& dataPtr, int& width, int& height, int& channels)
+int ImageReader::readJPG(const std::string& filename, std::shared_ptr<ImageData>& imageData)
 {
     struct jpeg_decompress_struct cinfo;
     struct jpeg_error_mgr jerr;
 
     cinfo.err = jpeg_std_error(&jerr);
-
 
     FILE* infile = fopen(filename.c_str(), "rb");
     if (infile == NULL) {
@@ -133,16 +132,17 @@ int ImageReader::readJPG(const std::string& filename, uint8_t*& dataPtr, int& wi
     // 开始解压缩JPEG文件
     jpeg_start_decompress(&cinfo);
     // 获取JPEG图像的宽、高、通道数
-    width = cinfo.output_width;
-    height = cinfo.output_height;
-    channels = cinfo.output_components;
+    int width = cinfo.output_width;
+    int height = cinfo.output_height;
+    int channels = cinfo.output_components;
 
     int rowStride = cinfo.output_width * cinfo.output_components;
-    unsigned char* imageData = (unsigned char*)malloc(cinfo.output_height * rowStride);
+    unsigned char* data = (unsigned char*)malloc(cinfo.output_height * rowStride);
+
     JSAMPROW rowPointer[1];
     // 逐行读取图像数据
     while (cinfo.output_scanline < cinfo.output_height) {
-        rowPointer[0] = &imageData[cinfo.output_scanline * rowStride];
+        rowPointer[0] = &data[cinfo.output_scanline * rowStride];
         jpeg_read_scanlines(&cinfo, rowPointer, 1);
     }
 
@@ -152,12 +152,12 @@ int ImageReader::readJPG(const std::string& filename, uint8_t*& dataPtr, int& wi
 
     uint64_t byteSize = width * height * channels;
     // 将图像数据复制到堆上
-    if (dataPtr == nullptr) {
-        dataPtr = new uint8_t[byteSize];
-        memcpy(dataPtr, imageData, byteSize);
+    if (imageData == nullptr) {
+        imageData = std::make_shared<ImageData>(width, height, channels);
+        memcpy(imageData->pixels, data, byteSize);
     }
 
-    free(imageData);
+    free(data);
 
     return 0;
 }
