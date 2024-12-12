@@ -11,8 +11,8 @@ extern "C" {
 
 #include <iostream>
 #include <fstream>
-#include <iomanip>  // std::set_precision
 
+#include "opencv2/opencv.hpp"
 
 std::string processString(const std::string& input) {
     // 如果字符串中没有小数点，直接返回原字符串
@@ -304,6 +304,41 @@ int ImageReader::readImageExif(const std::string& filename, std::vector<std::pai
     //     std::cout << "GPano.PosePitchDegrees " << imageEXIF.GPano.PosePitchDegrees << "\n";
     // if (imageEXIF.GPano.hasPoseRollDegrees())
     //     std::cout << "GPano.PoseRollDegrees " << imageEXIF.GPano.PoseRollDegrees << "\n";
+}
+
+int ImageReader::createThumbnail(const std::string &filename, FileType fileType, std::vector<uint8_t> &imageBuffer)
+{
+    std::shared_ptr<ImageData> imageData;
+    switch (fileType) {
+    case FileType::JPG_IMG:
+        ImageReader::readJPG(filename, imageData);
+        break;
+    case FileType::PNG_IMG:
+        ImageReader::readJPG(filename, imageData);
+        break;
+    case FileType::RAW_IMG:
+        ImageReader::readJPG(filename, imageData);
+        break;
+    case FileType::HEIF_IMG:
+        ImageReader::readJPG(filename, imageData);
+        break;
+    default:
+        break;
+    }
+    if (imageData == nullptr) {
+        return 0;
+    }
+
+    // 执行压缩
+    cv::Mat srcImg = cv::Mat(imageData->height, imageData->width, CV_8UC3, imageData->pixels);
+    cv::Mat dstImg;
+    cv::resize(srcImg, dstImg, cv::Size(64, 64), 0, 0, cv::INTER_LINEAR);
+
+    imageBuffer.clear();
+    int bytes = 64 * 64 * 3;
+    imageBuffer.assign(dstImg.data, dstImg.data + bytes);
+
+    return 1;
 }
 
 std::string ImageReader::translateNumToText(const std::string& type, int num)

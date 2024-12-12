@@ -4,9 +4,8 @@
 #include <QMainWindow>
 #include <QFileInfo>
 #include <QVBoxLayout>
-#include "DetailInfoDialog.h"
+#include <QListWidgetItem>
 #include "CustomOpenGLWidget.h"
-#include "ImageItem.h"
 #include "Utils.h"
 
 #include <list>
@@ -19,16 +18,18 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QString url, QWidget *parent = nullptr);
+    MainWindow(const std::string& url, QWidget *parent = nullptr);
     ~MainWindow();
 
 private:
-    void loadImage(const std::string& filename);
+    ImageFile loadImage(const std::string& filename);
+    void displayImage(const ImageFile& imageFile);
     void getAllFile();
     void updateFileList();
 
@@ -37,14 +38,13 @@ signals:
 
 private:
     Ui::MainWindow *ui;
-    DetailInfoDialog* m_detailInfoDialog;
 
     int m_currIndex;
+    ImageFile m_currImageFile;
+    std::string m_currDir;      // 当前工作目录
+    std::list<ImageFile> m_allFiles;      // 当前目录下的所有文件
+    std::list<ImageFile> m_displayFiles;   // 要显示在UI界面中的文件列表
 
-    QFileInfo m_currFileInfo;   // 当前显示的文件信息
-    QString m_currFilename;     // 当前显示的文件名
-    QString m_currDir;      // 当前工作目录
-    std::list<std::pair<fs::path, FileType>> m_allFiles;      // 当前目录下的所有文件
-    std::list<fs::path> m_displayFiles;   // 要显示在UI界面中的文件列表
+    QListWidgetItem* m_lastSelectedItem = nullptr;
 };
 #endif // MAINWINDOW_H

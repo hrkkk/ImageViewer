@@ -30,6 +30,12 @@ include_directories("./3rdparty/TinyEXIF/")
 # libraw库
 include_directories("./3rdparty/libraw/libraw/")
 link_directories("./3rdparty/libraw/lib/")
+# sqlite库
+include_directories(C:\\Users\\hrkkk\\Desktop\\sqlite\\include)
+link_directories(C:\\Users\\hrkkk\\Desktop\\sqlite\\lib)
+# opencv库
+include_directories(D:\\Environment\\opencv\\build\\include)
+link_directories(D:\\Environment\\opencv\\build\\x64\\vc15\\lib)
 
 add_definitions(-DTINYEXIF_NO_XMP_SUPPORT)
 
@@ -43,6 +49,7 @@ set(PROJECT_SOURCES
         ImageReader.h ImageReader.cpp
         ./3rdparty/TinyEXIF/TinyEXIF.cpp ./3rdparty/TinyEXIF/TinyEXIF.h
         Utils.cpp Utils.h
+        ThumbnailCache.h ThumbnailCache.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -50,7 +57,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         res.qrc
-        DetailInfoDialog.h DetailInfoDialog.cpp DetailInfoDialog.ui
         ImageItem.h ImageItem.cpp
     )
 # Define target properties for Android with Qt 6 as:
@@ -71,7 +77,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(ImageViewer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets heif.lib libx265.lib de265.lib jpeg.lib libraw.lib)
+target_link_libraries(ImageViewer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets heif.lib libx265.lib de265.lib jpeg.lib libraw.lib sqlite3.lib opencv_world460.lib)
 target_link_libraries(ImageViewer PRIVATE Qt${QT_VERSION_MAJOR}::OpenGLWidgets)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

@@ -1,7 +1,6 @@
 C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/moc_MainWindow.cpp: C:/Users/hrkkk/Desktop/ImageViewer/MainWindow.h \
   C:/Users/hrkkk/Desktop/ImageViewer/CustomOpenGLWidget.h \
-  C:/Users/hrkkk/Desktop/ImageViewer/DetailInfoDialog.h \
-  C:/Users/hrkkk/Desktop/ImageViewer/ImageItem.h \
+  C:/Users/hrkkk/Desktop/ImageViewer/Utils.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/QDebug \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/QFileInfo \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/QList \
@@ -13,6 +12,7 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/q20memory.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/q20type_traits.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/q23utility.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qabstractitemmodel.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qalgorithms.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qanystringview.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qarraydata.h \
@@ -59,6 +59,7 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qhashfunctions.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qiodevice.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qiodevicebase.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qitemselectionmodel.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qiterable.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qiterator.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qlatin1stringview.h \
@@ -87,6 +88,7 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qprocessordetection.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qrect.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qrefcount.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qregularexpression.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qscopedpointer.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qscopeguard.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qset.h \
@@ -160,7 +162,6 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qopenglfunctions.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpaintdevice.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpalette.h \
-  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpicture.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpixelformat.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpixmap.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpointingdevice.h \
@@ -170,11 +171,11 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qrgba64.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qscreen.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qsurfaceformat.h \
-  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtextdocument.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtgui-config.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtguiexports.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtguiglobal.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtransform.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qvalidator.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qvector2d.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qvectornd.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qwindowdefs.h \
@@ -183,20 +184,29 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtOpenGLWidgets/qopenglwidget.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtOpenGLWidgets/qtopenglwidgetsexports.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
-  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QDialog \
-  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QLabel \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QListWidgetItem \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QMainWindow \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QVBoxLayout \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QWidget \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qabstractitemdelegate.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qabstractitemview.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qabstractscrollarea.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qabstractslider.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qabstractspinbox.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qboxlayout.h \
-  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qdialog.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qframe.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qgridlayout.h \
-  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qlabel.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qlayout.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qlayoutitem.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qlistview.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qlistwidget.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qmainwindow.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qrubberband.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qsizepolicy.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qslider.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qstyle.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qstyleoption.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qtabbar.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qtabwidget.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qtwidgets-config.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qtwidgetsexports.h \

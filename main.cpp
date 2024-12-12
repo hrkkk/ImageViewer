@@ -17,7 +17,9 @@ int main(int argc, char *argv[])
     // } else {
     //     return 0;
     // }
-    MainWindow w("");
+    MainWindow w("H:\\DataCenter\\Photo\\#2 Photo\\picture\\beautiful\\1aa7fff52e4c112.jpg");
+    // 设置窗口无边框
+    w.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
     w.show();
     return a.exec();
 }

@@ -451,6 +451,12 @@
 			null
 		],
 		[
+			"C:/Users/hrkkk/Desktop/ImageViewer/CustomResizableWidget.h",
+			"MU",
+			"EWIEGA46WW/moc_CustomResizableWidget.cpp",
+			null
+		],
+		[
 			"C:/Users/hrkkk/Desktop/ImageViewer/DetailInfoDialog.h",
 			"MU",
 			"EWIEGA46WW/moc_DetailInfoDialog.cpp",
@@ -472,6 +478,18 @@
 			"C:/Users/hrkkk/Desktop/ImageViewer/MainWindow.h",
 			"MU",
 			"EWIEGA46WW/moc_MainWindow.cpp",
+			null
+		],
+		[
+			"C:/Users/hrkkk/Desktop/ImageViewer/ThumbnailCache.h",
+			"MU",
+			"EWIEGA46WW/moc_ThumbnailCache.cpp",
+			null
+		],
+		[
+			"C:/Users/hrkkk/Desktop/ImageViewer/Utils.h",
+			"MU",
+			"EWIEGA46WW/moc_Utils.cpp",
 			null
 		]
 	],
@@ -507,6 +525,8 @@
 		"C:/Users/hrkkk/Desktop/ImageViewer/3rdparty/libx265/include",
 		"C:/Users/hrkkk/Desktop/ImageViewer/3rdparty/libjpeg/libjpeg-turbo64/include",
 		"C:/Users/hrkkk/Desktop/ImageViewer/3rdparty/TinyEXIF",
+		"C:/Users/hrkkk/Desktop/ImageViewer/3rdparty/libraw/libraw",
+		"C:/Users/hrkkk/Desktop/sqlite/include",
 		"D:/Qt6/6.6.3/msvc2019_64/include/QtCore",
 		"D:/Qt6/6.6.3/msvc2019_64/include",
 		"D:/Qt6/6.6.3/msvc2019_64/mkspecs/win32-msvc",
@@ -549,10 +569,17 @@
 			"MU",
 			null
 		],
+		[
+			"C:/Users/hrkkk/Desktop/ImageViewer/CustomResizableWidget.cpp",
+			"MU",
+			null
+		],
 		[ "C:/Users/hrkkk/Desktop/ImageViewer/DetailInfoDialog.cpp", "MU", null ],
 		[ "C:/Users/hrkkk/Desktop/ImageViewer/ImageItem.cpp", "MU", null ],
 		[ "C:/Users/hrkkk/Desktop/ImageViewer/ImageReader.cpp", "MU", null ],
 		[ "C:/Users/hrkkk/Desktop/ImageViewer/MainWindow.cpp", "MU", null ],
+		[ "C:/Users/hrkkk/Desktop/ImageViewer/ThumbnailCache.cpp", "MU", null ],
+		[ "C:/Users/hrkkk/Desktop/ImageViewer/Utils.cpp", "MU", null ],
 		[ "C:/Users/hrkkk/Desktop/ImageViewer/main.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

@@ -6,14 +6,16 @@ ImageViewer_autogen/timestamp: \
 	C:/Users/hrkkk/Desktop/ImageViewer/CustomOpenGLWidget.h \
 	C:/Users/hrkkk/Desktop/ImageViewer/CustomResizableWidget.cpp \
 	C:/Users/hrkkk/Desktop/ImageViewer/CustomResizableWidget.h \
-	C:/Users/hrkkk/Desktop/ImageViewer/DetailInfoDialog.cpp \
-	C:/Users/hrkkk/Desktop/ImageViewer/DetailInfoDialog.h \
 	C:/Users/hrkkk/Desktop/ImageViewer/ImageItem.cpp \
 	C:/Users/hrkkk/Desktop/ImageViewer/ImageItem.h \
 	C:/Users/hrkkk/Desktop/ImageViewer/ImageReader.cpp \
 	C:/Users/hrkkk/Desktop/ImageViewer/ImageReader.h \
 	C:/Users/hrkkk/Desktop/ImageViewer/MainWindow.cpp \
 	C:/Users/hrkkk/Desktop/ImageViewer/MainWindow.h \
+	C:/Users/hrkkk/Desktop/ImageViewer/ThumbnailCache.cpp \
+	C:/Users/hrkkk/Desktop/ImageViewer/ThumbnailCache.h \
+	C:/Users/hrkkk/Desktop/ImageViewer/Utils.cpp \
+	C:/Users/hrkkk/Desktop/ImageViewer/Utils.h \
 	C:/Users/hrkkk/Desktop/ImageViewer/build/Release/.qtc/package-manager/auto-setup.cmake \
 	C:/Users/hrkkk/Desktop/ImageViewer/build/Release/CMakeFiles/3.29.3/CMakeCXXCompiler.cmake \
 	C:/Users/hrkkk/Desktop/ImageViewer/build/Release/CMakeFiles/3.29.3/CMakeRCCompiler.cmake \
@@ -31,6 +33,7 @@ ImageViewer_autogen/timestamp: \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/q20memory.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/q20type_traits.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/q23utility.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qabstractitemmodel.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qalgorithms.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qanystringview.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qarraydata.h \
@@ -77,6 +80,7 @@ ImageViewer_autogen/timestamp: \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qhashfunctions.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qiodevice.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qiodevicebase.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qitemselectionmodel.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qiterable.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qiterator.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qlatin1stringview.h \
@@ -105,6 +109,7 @@ ImageViewer_autogen/timestamp: \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qprocessordetection.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qrect.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qrefcount.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qregularexpression.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qscopedpointer.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qscopeguard.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qset.h \
@@ -193,6 +198,7 @@ ImageViewer_autogen/timestamp: \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtguiexports.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtguiglobal.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtransform.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qvalidator.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qvector2d.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qvectornd.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qwindowdefs.h \
@@ -201,20 +207,31 @@ ImageViewer_autogen/timestamp: \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtOpenGLWidgets/qopenglwidget.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtOpenGLWidgets/qtopenglwidgetsexports.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
-	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QDialog \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QLabel \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QListWidgetItem \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QMainWindow \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QVBoxLayout \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QWidget \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qabstractitemdelegate.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qabstractitemview.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qabstractscrollarea.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qabstractslider.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qabstractspinbox.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qboxlayout.h \
-	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qdialog.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qframe.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qgridlayout.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qlabel.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qlayout.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qlayoutitem.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qlistview.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qlistwidget.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qmainwindow.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qrubberband.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qsizepolicy.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qslider.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qstyle.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qstyleoption.h \
+	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qtabbar.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qtabwidget.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qtwidgets-config.h \
 	D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/qtwidgetsexports.h \
@@ -460,6 +477,5 @@ ImageViewer_autogen/timestamp: \
 	D:/Qt6/Tools/CMake_64/share/cmake-3.29/Modules/Platform/Windows-MSVC.cmake \
 	D:/Qt6/Tools/CMake_64/share/cmake-3.29/Modules/Platform/Windows.cmake \
 	D:/Qt6/Tools/CMake_64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake \
-	C:/Users/hrkkk/Desktop/ImageViewer/DetailInfoDialog.ui \
 	C:/Users/hrkkk/Desktop/ImageViewer/MainWindow.ui \
 	D:/Qt6/Tools/CMake_64/bin/cmake.exe

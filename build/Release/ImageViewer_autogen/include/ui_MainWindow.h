@@ -22,9 +22,9 @@
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include "CustomResizableWidget.h"
 #include "customopenglwidget.h"
 
 QT_BEGIN_NAMESPACE
@@ -36,24 +36,41 @@ public:
     QVBoxLayout *verticalLayout;
     QWidget *headBar;
     QHBoxLayout *horizontalLayout_2;
+    QWidget *widget_6;
+    QHBoxLayout *horizontalLayout_10;
+    QPushButton *btn_rotate;
+    QPushButton *btn_fullScreen;
+    QPushButton *btn_delete;
     QSpacerItem *horizontalSpacer;
+    QWidget *widget_8;
+    QHBoxLayout *horizontalLayout_12;
     QHBoxLayout *horizontalLayout;
     QLabel *label_name;
-    QLabel *label_5;
-    QLabel *label_dimensions;
-    QLabel *label_6;
-    QLabel *label_size;
+    QWidget *widget_7;
+    QHBoxLayout *horizontalLayout_11;
     QSpacerItem *horizontalSpacer_2;
+    QPushButton *btn_min;
+    QPushButton *btn_max;
+    QPushButton *btn_close;
     QWidget *mainArea;
     QHBoxLayout *horizontalLayout_4;
     QWidget *widget_2;
     QHBoxLayout *horizontalLayout_6;
     QPlainTextEdit *plainTextEdit;
-    CustomResizableWidget *widget_3;
-    CustomOpenGLWidget *openGLWidget;
+    QTabWidget *tabWidget;
+    QWidget *tab;
+    QHBoxLayout *horizontalLayout_8;
+    CustomOpenGLWidget *openGLWidget_1_1;
+    QWidget *tab_2;
+    QHBoxLayout *horizontalLayout_9;
+    CustomOpenGLWidget *openGLWidget_2_1;
+    CustomOpenGLWidget *openGLWidget_2_2;
+    QWidget *tab_3;
+    QVBoxLayout *verticalLayout_3;
+    CustomOpenGLWidget *openGLWidget_3_1;
+    CustomOpenGLWidget *openGLWidget_3_2;
     QWidget *widget_4;
     QHBoxLayout *horizontalLayout_7;
-    CustomResizableWidget *widget_5;
     QWidget *widget;
     QVBoxLayout *verticalLayout_2;
     QGroupBox *groupBox;
@@ -74,13 +91,13 @@ public:
     QPushButton *btn_prev;
     QLabel *label_imageIndex;
     QPushButton *btn_next;
-    QPushButton *btn_fullScreen;
-    QPushButton *btn_rotate;
-    QPushButton *btn_delete;
     QLabel *label_3;
     QPushButton *btn_imageList;
     QPushButton *btn_imageInfo;
     QSpacerItem *horizontalSpacer_6;
+    QLabel *label_dimensions;
+    QLabel *label_6;
+    QLabel *label_size;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -101,58 +118,135 @@ public:
         centralwidget->setSizePolicy(sizePolicy1);
         centralwidget->setStyleSheet(QString::fromUtf8(""));
         verticalLayout = new QVBoxLayout(centralwidget);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
         headBar = new QWidget(centralwidget);
         headBar->setObjectName("headBar");
-        headBar->setStyleSheet(QString::fromUtf8("#headBar {\n"
-"	background-color: rgba(50, 50, 50, 50);\n"
-"}\n"
-"\n"
-"QLabel {\n"
+        headBar->setMaximumSize(QSize(16777215, 30));
+        headBar->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "	font: 700 12pt \"Microsoft YaHei UI\";\n"
-"	color: rgb(255, 255, 255);\n"
+"	color: rgb(0, 0, 0);\n"
 "}\n"
 ""));
         horizontalLayout_2 = new QHBoxLayout(headBar);
+        horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        widget_6 = new QWidget(headBar);
+        widget_6->setObjectName("widget_6");
+        widget_6->setMinimumSize(QSize(0, 0));
+        horizontalLayout_10 = new QHBoxLayout(widget_6);
+        horizontalLayout_10->setObjectName("horizontalLayout_10");
+        horizontalLayout_10->setContentsMargins(0, 0, 0, 0);
+        btn_rotate = new QPushButton(widget_6);
+        btn_rotate->setObjectName("btn_rotate");
+        btn_rotate->setMinimumSize(QSize(30, 30));
+        btn_rotate->setMaximumSize(QSize(30, 30));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/resources/rotate.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_rotate->setIcon(icon);
+        btn_rotate->setIconSize(QSize(25, 25));
+
+        horizontalLayout_10->addWidget(btn_rotate);
+
+        btn_fullScreen = new QPushButton(widget_6);
+        btn_fullScreen->setObjectName("btn_fullScreen");
+        btn_fullScreen->setMinimumSize(QSize(30, 30));
+        btn_fullScreen->setMaximumSize(QSize(30, 30));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/resources/full.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_fullScreen->setIcon(icon1);
+        btn_fullScreen->setIconSize(QSize(25, 25));
+
+        horizontalLayout_10->addWidget(btn_fullScreen);
+
+        btn_delete = new QPushButton(widget_6);
+        btn_delete->setObjectName("btn_delete");
+        btn_delete->setMinimumSize(QSize(30, 30));
+        btn_delete->setMaximumSize(QSize(30, 30));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/resources/delete.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_delete->setIcon(icon2);
+        btn_delete->setIconSize(QSize(25, 25));
+
+        horizontalLayout_10->addWidget(btn_delete);
+
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        horizontalLayout_2->addItem(horizontalSpacer);
+        horizontalLayout_10->addItem(horizontalSpacer);
 
+
+        horizontalLayout_2->addWidget(widget_6);
+
+        widget_8 = new QWidget(headBar);
+        widget_8->setObjectName("widget_8");
+        horizontalLayout_12 = new QHBoxLayout(widget_8);
+        horizontalLayout_12->setSpacing(0);
+        horizontalLayout_12->setObjectName("horizontalLayout_12");
+        horizontalLayout_12->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName("horizontalLayout");
-        label_name = new QLabel(headBar);
+        label_name = new QLabel(widget_8);
         label_name->setObjectName("label_name");
 
         horizontalLayout->addWidget(label_name);
 
-        label_5 = new QLabel(headBar);
-        label_5->setObjectName("label_5");
 
-        horizontalLayout->addWidget(label_5);
-
-        label_dimensions = new QLabel(headBar);
-        label_dimensions->setObjectName("label_dimensions");
-
-        horizontalLayout->addWidget(label_dimensions);
-
-        label_6 = new QLabel(headBar);
-        label_6->setObjectName("label_6");
-
-        horizontalLayout->addWidget(label_6);
-
-        label_size = new QLabel(headBar);
-        label_size->setObjectName("label_size");
-
-        horizontalLayout->addWidget(label_size);
+        horizontalLayout_12->addLayout(horizontalLayout);
 
 
-        horizontalLayout_2->addLayout(horizontalLayout);
+        horizontalLayout_2->addWidget(widget_8);
 
+        widget_7 = new QWidget(headBar);
+        widget_7->setObjectName("widget_7");
+        widget_7->setMinimumSize(QSize(0, 0));
+        horizontalLayout_11 = new QHBoxLayout(widget_7);
+        horizontalLayout_11->setSpacing(0);
+        horizontalLayout_11->setObjectName("horizontalLayout_11");
+        horizontalLayout_11->setContentsMargins(0, 0, 0, 0);
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        horizontalLayout_2->addItem(horizontalSpacer_2);
+        horizontalLayout_11->addItem(horizontalSpacer_2);
 
+        btn_min = new QPushButton(widget_7);
+        btn_min->setObjectName("btn_min");
+        btn_min->setEnabled(true);
+        btn_min->setMinimumSize(QSize(50, 30));
+        btn_min->setMaximumSize(QSize(50, 30));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/resources/min.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_min->setIcon(icon3);
+
+        horizontalLayout_11->addWidget(btn_min);
+
+        btn_max = new QPushButton(widget_7);
+        btn_max->setObjectName("btn_max");
+        btn_max->setMinimumSize(QSize(50, 30));
+        btn_max->setMaximumSize(QSize(50, 30));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/resources/max.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_max->setIcon(icon4);
+
+        horizontalLayout_11->addWidget(btn_max);
+
+        btn_close = new QPushButton(widget_7);
+        btn_close->setObjectName("btn_close");
+        btn_close->setMinimumSize(QSize(50, 30));
+        btn_close->setMaximumSize(QSize(50, 30));
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/resources/close.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_close->setIcon(icon5);
+
+        horizontalLayout_11->addWidget(btn_close);
+
+
+        horizontalLayout_2->addWidget(widget_7);
+
+        horizontalLayout_2->setStretch(0, 1);
+        horizontalLayout_2->setStretch(1, 1);
+        horizontalLayout_2->setStretch(2, 1);
 
         verticalLayout->addWidget(headBar);
 
@@ -164,7 +258,9 @@ public:
         sizePolicy2.setHeightForWidth(mainArea->sizePolicy().hasHeightForWidth());
         mainArea->setSizePolicy(sizePolicy2);
         horizontalLayout_4 = new QHBoxLayout(mainArea);
+        horizontalLayout_4->setSpacing(0);
         horizontalLayout_4->setObjectName("horizontalLayout_4");
+        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
         widget_2 = new QWidget(mainArea);
         widget_2->setObjectName("widget_2");
         widget_2->setMaximumSize(QSize(260, 16777215));
@@ -180,21 +276,60 @@ public:
 
         horizontalLayout_6->addWidget(plainTextEdit);
 
-        widget_3 = new CustomResizableWidget(widget_2);
-        widget_3->setObjectName("widget_3");
-        widget_3->setMinimumSize(QSize(10, 0));
-        widget_3->setMaximumSize(QSize(10, 16777215));
-        widget_3->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 0);"));
-
-        horizontalLayout_6->addWidget(widget_3);
-
 
         horizontalLayout_4->addWidget(widget_2);
 
-        openGLWidget = new CustomOpenGLWidget(mainArea);
-        openGLWidget->setObjectName("openGLWidget");
+        tabWidget = new QTabWidget(mainArea);
+        tabWidget->setObjectName("tabWidget");
+        tab = new QWidget();
+        tab->setObjectName("tab");
+        horizontalLayout_8 = new QHBoxLayout(tab);
+        horizontalLayout_8->setSpacing(0);
+        horizontalLayout_8->setObjectName("horizontalLayout_8");
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
+        openGLWidget_1_1 = new CustomOpenGLWidget(tab);
+        openGLWidget_1_1->setObjectName("openGLWidget_1_1");
+        openGLWidget_1_1->setMinimumSize(QSize(0, 0));
 
-        horizontalLayout_4->addWidget(openGLWidget);
+        horizontalLayout_8->addWidget(openGLWidget_1_1);
+
+        tabWidget->addTab(tab, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName("tab_2");
+        horizontalLayout_9 = new QHBoxLayout(tab_2);
+        horizontalLayout_9->setSpacing(10);
+        horizontalLayout_9->setObjectName("horizontalLayout_9");
+        horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
+        openGLWidget_2_1 = new CustomOpenGLWidget(tab_2);
+        openGLWidget_2_1->setObjectName("openGLWidget_2_1");
+
+        horizontalLayout_9->addWidget(openGLWidget_2_1);
+
+        openGLWidget_2_2 = new CustomOpenGLWidget(tab_2);
+        openGLWidget_2_2->setObjectName("openGLWidget_2_2");
+
+        horizontalLayout_9->addWidget(openGLWidget_2_2);
+
+        tabWidget->addTab(tab_2, QString());
+        tab_3 = new QWidget();
+        tab_3->setObjectName("tab_3");
+        verticalLayout_3 = new QVBoxLayout(tab_3);
+        verticalLayout_3->setSpacing(10);
+        verticalLayout_3->setObjectName("verticalLayout_3");
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        openGLWidget_3_1 = new CustomOpenGLWidget(tab_3);
+        openGLWidget_3_1->setObjectName("openGLWidget_3_1");
+
+        verticalLayout_3->addWidget(openGLWidget_3_1);
+
+        openGLWidget_3_2 = new CustomOpenGLWidget(tab_3);
+        openGLWidget_3_2->setObjectName("openGLWidget_3_2");
+
+        verticalLayout_3->addWidget(openGLWidget_3_2);
+
+        tabWidget->addTab(tab_3, QString());
+
+        horizontalLayout_4->addWidget(tabWidget);
 
         widget_4 = new QWidget(mainArea);
         widget_4->setObjectName("widget_4");
@@ -203,14 +338,6 @@ public:
         horizontalLayout_7->setSpacing(0);
         horizontalLayout_7->setObjectName("horizontalLayout_7");
         horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
-        widget_5 = new CustomResizableWidget(widget_4);
-        widget_5->setObjectName("widget_5");
-        widget_5->setMinimumSize(QSize(10, 0));
-        widget_5->setMaximumSize(QSize(10, 16777215));
-        widget_5->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 0);"));
-
-        horizontalLayout_7->addWidget(widget_5);
-
         widget = new QWidget(widget_4);
         widget->setObjectName("widget");
         widget->setMaximumSize(QSize(200, 16777215));
@@ -222,6 +349,7 @@ public:
         gridLayout->setObjectName("gridLayout");
         cBox_typeJpg = new QCheckBox(groupBox);
         cBox_typeJpg->setObjectName("cBox_typeJpg");
+        cBox_typeJpg->setChecked(true);
 
         gridLayout->addWidget(cBox_typeJpg, 0, 0, 1, 1);
 
@@ -259,8 +387,19 @@ public:
 
         bottomArea = new QWidget(centralwidget);
         bottomArea->setObjectName("bottomArea");
+        bottomArea->setStyleSheet(QString::fromUtf8("* {\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"#bottomArea {\n"
+"	border: 0px solid;\n"
+"	background-color: rgba(50, 50, 50, 50);\n"
+"}\n"
+""));
         horizontalLayout_5 = new QHBoxLayout(bottomArea);
+        horizontalLayout_5->setSpacing(0);
         horizontalLayout_5->setObjectName("horizontalLayout_5");
+        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
         horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_5->addItem(horizontalSpacer_5);
@@ -270,12 +409,6 @@ public:
         bottomBar->setStyleSheet(QString::fromUtf8("* {\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
 "}\n"
-"\n"
-"#bottomBar {\n"
-"	border: 0px solid;\n"
-"	border-radius: 10px;\n"
-"	background-color: rgba(50, 50, 50, 50);\n"
-"}\n"
 ""));
         horizontalLayout_3 = new QHBoxLayout(bottomBar);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
@@ -284,9 +417,9 @@ public:
         btn_zoomOut->setMinimumSize(QSize(30, 30));
         btn_zoomOut->setMaximumSize(QSize(30, 30));
         btn_zoomOut->setStyleSheet(QString::fromUtf8(""));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/resources/smaller.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btn_zoomOut->setIcon(icon);
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/resources/smaller.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_zoomOut->setIcon(icon6);
         btn_zoomOut->setIconSize(QSize(25, 25));
 
         horizontalLayout_3->addWidget(btn_zoomOut);
@@ -301,9 +434,9 @@ public:
         btn_zoomIn->setObjectName("btn_zoomIn");
         btn_zoomIn->setMinimumSize(QSize(30, 30));
         btn_zoomIn->setMaximumSize(QSize(30, 30));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/resources/bigger.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btn_zoomIn->setIcon(icon1);
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/resources/bigger.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_zoomIn->setIcon(icon7);
         btn_zoomIn->setIconSize(QSize(25, 25));
 
         horizontalLayout_3->addWidget(btn_zoomIn);
@@ -312,9 +445,9 @@ public:
         btn_prev->setObjectName("btn_prev");
         btn_prev->setMinimumSize(QSize(30, 30));
         btn_prev->setMaximumSize(QSize(30, 30));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/resources/prev.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btn_prev->setIcon(icon2);
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/resources/prev.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_prev->setIcon(icon8);
         btn_prev->setIconSize(QSize(20, 20));
 
         horizontalLayout_3->addWidget(btn_prev);
@@ -329,45 +462,12 @@ public:
         btn_next->setObjectName("btn_next");
         btn_next->setMinimumSize(QSize(30, 30));
         btn_next->setMaximumSize(QSize(30, 30));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/resources/next.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btn_next->setIcon(icon3);
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/resources/next.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_next->setIcon(icon9);
         btn_next->setIconSize(QSize(20, 20));
 
         horizontalLayout_3->addWidget(btn_next);
-
-        btn_fullScreen = new QPushButton(bottomBar);
-        btn_fullScreen->setObjectName("btn_fullScreen");
-        btn_fullScreen->setMinimumSize(QSize(30, 30));
-        btn_fullScreen->setMaximumSize(QSize(30, 30));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/resources/full.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btn_fullScreen->setIcon(icon4);
-        btn_fullScreen->setIconSize(QSize(25, 25));
-
-        horizontalLayout_3->addWidget(btn_fullScreen);
-
-        btn_rotate = new QPushButton(bottomBar);
-        btn_rotate->setObjectName("btn_rotate");
-        btn_rotate->setMinimumSize(QSize(30, 30));
-        btn_rotate->setMaximumSize(QSize(30, 30));
-        QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/resources/rotate.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btn_rotate->setIcon(icon5);
-        btn_rotate->setIconSize(QSize(25, 25));
-
-        horizontalLayout_3->addWidget(btn_rotate);
-
-        btn_delete = new QPushButton(bottomBar);
-        btn_delete->setObjectName("btn_delete");
-        btn_delete->setMinimumSize(QSize(30, 30));
-        btn_delete->setMaximumSize(QSize(30, 30));
-        QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/resources/delete.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btn_delete->setIcon(icon6);
-        btn_delete->setIconSize(QSize(25, 25));
-
-        horizontalLayout_3->addWidget(btn_delete);
 
         label_3 = new QLabel(bottomBar);
         label_3->setObjectName("label_3");
@@ -378,9 +478,9 @@ public:
         btn_imageList->setObjectName("btn_imageList");
         btn_imageList->setMinimumSize(QSize(30, 30));
         btn_imageList->setMaximumSize(QSize(30, 30));
-        QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/resources/list.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btn_imageList->setIcon(icon7);
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/resources/list.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_imageList->setIcon(icon10);
         btn_imageList->setIconSize(QSize(25, 25));
 
         horizontalLayout_3->addWidget(btn_imageList);
@@ -389,9 +489,9 @@ public:
         btn_imageInfo->setObjectName("btn_imageInfo");
         btn_imageInfo->setMinimumSize(QSize(30, 30));
         btn_imageInfo->setMaximumSize(QSize(30, 30));
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/resources/info.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btn_imageInfo->setIcon(icon8);
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/resources/info.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_imageInfo->setIcon(icon11);
         btn_imageInfo->setIconSize(QSize(25, 25));
 
         horizontalLayout_3->addWidget(btn_imageInfo);
@@ -403,15 +503,33 @@ public:
 
         horizontalLayout_5->addItem(horizontalSpacer_6);
 
+        label_dimensions = new QLabel(bottomArea);
+        label_dimensions->setObjectName("label_dimensions");
+
+        horizontalLayout_5->addWidget(label_dimensions);
+
+        label_6 = new QLabel(bottomArea);
+        label_6->setObjectName("label_6");
+
+        horizontalLayout_5->addWidget(label_6);
+
+        label_size = new QLabel(bottomArea);
+        label_size->setObjectName("label_size");
+
+        horizontalLayout_5->addWidget(label_size);
+
 
         verticalLayout->addWidget(bottomArea);
 
         verticalLayout->setStretch(0, 1);
-        verticalLayout->setStretch(1, 8);
+        verticalLayout->setStretch(1, 20);
         verticalLayout->setStretch(2, 1);
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
+
+        tabWidget->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -419,11 +537,16 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        btn_rotate->setText(QString());
+        btn_fullScreen->setText(QString());
+        btn_delete->setText(QString());
         label_name->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", " | ", nullptr));
-        label_dimensions->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", " | ", nullptr));
-        label_size->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        btn_min->setText(QString());
+        btn_max->setText(QString());
+        btn_close->setText(QString());
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "Tab 2", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
         groupBox->setTitle(QCoreApplication::translate("MainWindow", "\345\233\276\347\211\207\347\261\273\345\236\213", nullptr));
         cBox_typeJpg->setText(QCoreApplication::translate("MainWindow", "JPG", nullptr));
         cBox_typePng->setText(QCoreApplication::translate("MainWindow", "PNG", nullptr));
@@ -435,12 +558,12 @@ public:
         btn_prev->setText(QString());
         label_imageIndex->setText(QCoreApplication::translate("MainWindow", "1/100", nullptr));
         btn_next->setText(QString());
-        btn_fullScreen->setText(QString());
-        btn_rotate->setText(QString());
-        btn_delete->setText(QString());
         label_3->setText(QCoreApplication::translate("MainWindow", " | ", nullptr));
         btn_imageList->setText(QString());
         btn_imageInfo->setText(QString());
+        label_dimensions->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", " | ", nullptr));
+        label_size->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };

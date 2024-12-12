@@ -25,6 +25,13 @@ struct ImageData {
     }
 };
 
+struct DragMoveVariable {
+    float offsetX, offsetY;
+    float lastX, lastY;
+    bool isPressed;
+
+    DragMoveVariable() : offsetX(0.0f), offsetY(0.0f), lastX(0.0f), lastY(0.0f), isPressed(false) {}
+};
 
 class CustomOpenGLWidget : public QOpenGLWidget, QOpenGLFunctions
 {
@@ -33,8 +40,7 @@ public:
     CustomOpenGLWidget(QWidget* parent = nullptr);
 
 signals:
-    void sign_mouseClicked(int x, int y);
-    void sign_scaleChanged(double scale);
+    void sig_scaleChanged(double scale);
 
 public slots:
     void slot_showImage(std::shared_ptr<ImageData>& data, int orientation);
@@ -50,6 +56,7 @@ protected:
     void wheelEvent(QWheelEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
+    void mouseDoubleClickEvent(QMouseEvent* event) override;
 
 private:
     unsigned int program;
@@ -65,6 +72,7 @@ private:
     double m_scaleRatio = 1.0;
     int m_orientation = 1;
     bool m_isRotated = false;
+    DragMoveVariable m_dragMoveVariable;
 
     // 图像数据
     std::shared_ptr<ImageData> m_image;

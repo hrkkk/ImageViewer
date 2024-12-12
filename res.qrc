@@ -14,5 +14,8 @@
         <file>resources/jpg.png</file>
         <file>resources/png.png</file>
         <file>resources/raw.png</file>
+        <file>resources/close.png</file>
+        <file>resources/max.png</file>
+        <file>resources/min.png</file>
     </qresource>
 </RCC>

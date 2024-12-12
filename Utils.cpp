@@ -40,3 +40,32 @@ std::string Utils::byteToText(unsigned long long bytes)
     }
     return "";
 }
+
+std::string Utils::typeToText(FileType fileType)
+{
+    switch (fileType) {
+    case FileType::JPG_IMG:
+        return "JPEG";
+    case FileType::PNG_IMG:
+        return "PNG";
+    case FileType::HEIF_IMG:
+        return "HEIF";
+    case FileType::RAW_IMG:
+        return "RAW";
+    default:
+        return "";
+    }
+    return "";
+}
+
+std::pair<std::string, std::string> Utils::splitFilepath(const std::string& filepath)
+{
+    size_t found = filepath.find_last_of("/\\");
+    if (found == std::string::npos) {
+        return std::make_pair("", filepath); // 没有找到路径分隔符，整个字符串是文件名
+    }
+    std::string filePath = filepath.substr(0, found);
+    std::string fileName = filepath.substr(found + 1);
+
+    return std::make_pair(filePath, fileName);
+}

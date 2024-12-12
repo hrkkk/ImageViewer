@@ -3,61 +3,6 @@
 #include <QDebug>
 #include <QMouseEvent>
 
-CustomOpenGLWidget::CustomOpenGLWidget(QWidget* parent): QOpenGLWidget(parent)
-{}
-
-float offsetX = 0.0f, offsetY = 0.0f;
-float lastX = 0.0f, lastY = 0.0f;
-bool isPressed = false;
-
-void CustomOpenGLWidget::mousePressEvent(QMouseEvent* event)
-{
-    if (event->button() == Qt::RightButton) {
-        emit sign_mouseClicked(event->globalPosition().x(), event->globalPosition().y());
-    } else if (event->button() == Qt::LeftButton) {
-        isPressed = true;
-        lastX = offsetX = event->pos().x();
-        lastY = offsetY = event->pos().y();
-    }
-}
-
-void CustomOpenGLWidget::wheelEvent(QWheelEvent* event)
-{
-    if (event->angleDelta().y() > 10) {
-        if (m_scaleRatio == 0.01) {
-            m_scaleRatio = 0.1;     // 凑整，避免从1%变成11%
-        } else {
-            m_scaleRatio += 0.1;
-        }
-        if (m_scaleRatio >= 10.0) {     // 最大可放大至1000%
-            m_scaleRatio = 10.0;
-        }
-    } else {
-        m_scaleRatio -= 0.1;
-        if (m_scaleRatio <= 0.01) {     // 最小可缩小至1%
-            m_scaleRatio = 0.01;
-        }
-    }
-    resizeGL(width(), height());
-    emit sign_scaleChanged(m_scaleRatio);
-}
-
-void CustomOpenGLWidget::mouseMoveEvent(QMouseEvent* event)
-{
-    if (isPressed) {
-        offsetX += event->pos().x() - lastX;
-        offsetY += event->pos().y() - lastY;
-    }
-    lastX = event->pos().x();
-    lastY = event->pos().y();
-    qDebug() << "move" << offsetX << offsetY;
-}
-
-void CustomOpenGLWidget::mouseReleaseEvent(QMouseEvent* event)
-{
-    isPressed = false;
-}
-
 #define GET_GLSTR(x) #x
 const char* vsrc = GET_GLSTR(
     attribute vec4 inPosition;
@@ -107,7 +52,7 @@ const char* vsrc = GET_GLSTR(
 
         texCoord = vec2(rotatedTexCoords.x, 1.0 - rotatedTexCoords.y);
     }
-);
+    );
 
 const char* fsrc = GET_GLSTR(
     varying vec2 texCoord;
@@ -117,13 +62,70 @@ const char* fsrc = GET_GLSTR(
     {
         gl_FragColor = texture2D(tex, texCoord);
     }
-);
+    );
+
+CustomOpenGLWidget::CustomOpenGLWidget(QWidget* parent): QOpenGLWidget(parent)
+{}
+
+void CustomOpenGLWidget::mousePressEvent(QMouseEvent* event)
+{
+    if (event->button() == Qt::LeftButton) {
+        m_dragMoveVariable.isPressed = true;
+        m_dragMoveVariable.lastX = event->pos().x();
+        m_dragMoveVariable.lastY = event->pos().y();
+    }
+}
+
+void CustomOpenGLWidget::wheelEvent(QWheelEvent* event)
+{
+    if (event->angleDelta().y() > 10) {
+        if (m_scaleRatio == 0.01) {
+            m_scaleRatio = 0.1;     // 凑整，避免从1%变成11%
+        } else {
+            m_scaleRatio += 0.1;
+        }
+        if (m_scaleRatio >= 10.0) {     // 最大可放大至1000%
+            m_scaleRatio = 10.0;
+        }
+    } else {
+        m_scaleRatio -= 0.1;
+        if (m_scaleRatio <= 0.01) {     // 最小可缩小至1%
+            m_scaleRatio = 0.01;
+        }
+    }
+    resizeGL(width(), height());
+    emit sig_scaleChanged(m_scaleRatio);
+}
+
+void CustomOpenGLWidget::mouseMoveEvent(QMouseEvent* event)
+{
+    if (m_dragMoveVariable.isPressed) {
+        m_dragMoveVariable.offsetX += event->pos().x() - m_dragMoveVariable.lastX;
+        m_dragMoveVariable.offsetY += event->pos().y() - m_dragMoveVariable.lastY;
+        update();
+    }
+    m_dragMoveVariable.lastX = event->pos().x();
+    m_dragMoveVariable.lastY = event->pos().y();
+}
+
+void CustomOpenGLWidget::mouseReleaseEvent(QMouseEvent* event)
+{
+    m_dragMoveVariable.isPressed = false;
+}
+
+void CustomOpenGLWidget::mouseDoubleClickEvent(QMouseEvent* event)
+{
+    m_dragMoveVariable = DragMoveVariable();
+    m_scaleRatio = 1.0;
+
+    resizeGL(width(), height());
+    emit sig_scaleChanged(m_scaleRatio);
+    update();
+}
 
 void CustomOpenGLWidget::initializeGL()
 {
     initializeOpenGLFunctions();
-
-    glEnable(GL_DEPTH_TEST);
 
     static const GLfloat vertices[] {
         // 顶点坐标
@@ -174,7 +176,7 @@ void CustomOpenGLWidget::initializeGL()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    glClearColor(1.0, 1.0, 1.0, 0.0);
+    glClearColor(240 / 255.0, 240 / 255.0, 240 / 255.0, 0.0);
 }
 
 void CustomOpenGLWidget::resizeGL(int w, int h)
@@ -220,8 +222,8 @@ void CustomOpenGLWidget::paintGL()
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_image->width, m_image->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_image->pixels);
     }
 
-    glUniform1i(glGetUniformLocation(program, "offsetX"), offsetX);
-    glUniform1i(glGetUniformLocation(program, "offsetY"), offsetX);
+    glUniform1f(glGetUniformLocation(program, "offsetX"), m_dragMoveVariable.offsetX / m_image->width);
+    glUniform1f(glGetUniformLocation(program, "offsetY"), -1.0 * m_dragMoveVariable.offsetY / m_image->height);
     glUniform1i(glGetUniformLocation(program, "orientation"), m_orientation);
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
@@ -263,7 +265,7 @@ void CustomOpenGLWidget::slot_changeScale(int flag)
         }
     }
     resizeGL(width(), height());
-    emit sign_scaleChanged(m_scaleRatio);
+    emit sig_scaleChanged(m_scaleRatio);
 }
 
 void CustomOpenGLWidget::slot_rotateImage()

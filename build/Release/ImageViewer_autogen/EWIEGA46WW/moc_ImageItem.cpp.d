@@ -1,5 +1,11 @@
 C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/moc_ImageItem.cpp: C:/Users/hrkkk/Desktop/ImageViewer/ImageItem.h \
+  C:/Users/hrkkk/Desktop/ImageViewer/Utils.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/QFileInfo \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/QList \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/QObject \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/QRect \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/QSize \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/QSizeF \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/q20functional.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/q20memory.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/q20type_traits.h \
@@ -18,6 +24,7 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qbytearrayalgorithms.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qbytearraylist.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qbytearrayview.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qcalendar.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qchar.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qcompare.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qcompare_impl.h \
@@ -28,10 +35,15 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qcontainerinfo.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qcontainertools_impl.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qcontiguouscache.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qcoreevent.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qdarwinhelpers.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qdatastream.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qdatetime.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qdebug.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qexceptionhandling.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qfile.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qfiledevice.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qfileinfo.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qflags.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qfloat16.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qforeach.h \
@@ -49,6 +61,7 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qlatin1stringview.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qline.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qlist.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qlocale.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qlogging.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qmalloc.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qmap.h \
@@ -58,6 +71,7 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qmetatype.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qminmax.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qnamespace.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qnativeinterface.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qnumeric.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qobject.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qobject_impl.h \
@@ -66,6 +80,7 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qoverload.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qpair.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qpoint.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qpointer.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qprocessordetection.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qrect.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qrefcount.h \
@@ -99,6 +114,7 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qtdeprecationmarkers.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qtenvironmentvariables.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qtextstream.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qtimezone.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qtmetamacros.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qtnoop.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qtpreprocessorsupport.h \
@@ -115,31 +131,40 @@ C:/Users/hrkkk/Desktop/ImageViewer/build/Release/ImageViewer_autogen/EWIEGA46WW/
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qvarlengtharray.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qversiontagging.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtCore/qxptype_traits.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/QMouseEvent \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/QTransform \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qaction.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qbitmap.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qbrush.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qcolor.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qcursor.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qevent.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qeventpoint.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qfont.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qfontinfo.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qfontmetrics.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qicon.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qimage.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qinputdevice.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qkeysequence.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpaintdevice.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpalette.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpicture.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpixelformat.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpixmap.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpointingdevice.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qpolygon.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qregion.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qrgb.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qrgba64.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qscreen.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtextdocument.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtgui-config.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtguiexports.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtguiglobal.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qtransform.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qvector2d.h \
+  D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qvectornd.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qwindowdefs.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtGui/qwindowdefs_win.h \
   D:/Qt6/6.6.3/msvc2019_64/include/QtWidgets/QLabel \

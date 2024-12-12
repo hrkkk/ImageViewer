@@ -10,6 +10,8 @@
 	"INPUTS" : 
 	[
 		"C:/Users/hrkkk/Desktop/ImageViewer/resources/delete.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/max.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/min.png",
 		"C:/Users/hrkkk/Desktop/ImageViewer/resources/png.png",
 		"C:/Users/hrkkk/Desktop/ImageViewer/resources/smaller.png",
 		"C:/Users/hrkkk/Desktop/ImageViewer/resources/next.png",
@@ -22,6 +24,7 @@
 		"C:/Users/hrkkk/Desktop/ImageViewer/resources/heic.png",
 		"C:/Users/hrkkk/Desktop/ImageViewer/resources/origin.png",
 		"C:/Users/hrkkk/Desktop/ImageViewer/resources/full.png",
+		"C:/Users/hrkkk/Desktop/ImageViewer/resources/close.png",
 		"C:/Users/hrkkk/Desktop/ImageViewer/resources/rotate.png"
 	],
 	"LOCK_FILE" : "C:/Users/hrkkk/Desktop/ImageViewer/build/Release/CMakeFiles/ImageViewer_autogen.dir/AutoRcc_res_EWIEGA46WW_Lock.lock",

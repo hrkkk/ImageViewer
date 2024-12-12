@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <QFileInfo>
 #include <string>
 
 enum class FileType {
@@ -11,9 +12,18 @@ enum class FileType {
     ALL_IMG = 0x000F
 };
 
+struct ImageFile {
+    std::string fileName;
+    std::string filePath;
+    QFileInfo fileInfo;
+    FileType fileType;
+};
+
 class Utils
 {
 public:
     static FileType getFileType(const std::string& filename);
     static std::string byteToText(unsigned long long bytes);
+    static std::string typeToText(FileType fileType);
+    static std::pair<std::string, std::string> splitFilepath(const std::string& filepath);
 };
